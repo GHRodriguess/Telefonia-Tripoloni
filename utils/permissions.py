@@ -1,3 +1,12 @@
+"""
+Para utilizar o permissions basta usar isso no inicio do código:
+from utils.global_utils import  check_permission
+
+E antes de cada view ou função utilizar o decorator abaixo:
+@check_permission(permissions=[{permissoes_requeridas}])
+"""
+
+
 class Permissions: 
     def __init__(self, request, user, permissions=[], **kwargs):
         self.request = request
