@@ -11,18 +11,6 @@ class Permissions:
                 'action': ['redirect', 'login'],
                 'next': True,
             },
-#            'in_course_required': {
-#                'func': self.in_course_required,
-#                'message': 'You must be a student or an instructor to access this course',
-#                'action': ['redirect', 'hub'],
-#                'next': False,
-#            },
-#            'is_teacher_required': {
-#                'func': self.is_teacher_required,
-#                'message': 'You must be a teacher to access this course',
-#                'action': ['redirect', 'hub'],
-#                'next': False,
-#            }
         }
         
     def login_required(self):
