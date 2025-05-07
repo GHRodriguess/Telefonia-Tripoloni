@@ -1,0 +1,49 @@
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+-------------------------- PROJETO LISTA TELEFONICA TRIPOLONI --------------------------
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+>>PAGINAS:
+
+ 1 -> ADM
+ - É composta por:
+ > LISTA COM RAMAL, NÚMERO, EMAIL E ANYDESK
+ > FUNÇÃO DE ADICIONAR E EXCLUIR LINHAS
+ > FUNÇÃO DE CONECTAR NO ANYDESK AUTOMATICAMENTE
+ > FUNÇÃO DE GERAR RELATÓRIO
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+ 2 -> USUÁRIOS
+ - É composta por:
+ > LOGIN E SENHA SINCRONIZADOS COM O AD
+ > LISTA COM RAMAL, NÚMERO E EMAIL
+ > FUNÇÃO DE GERAR RELATÓRIO
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+-------
+A FAZER:
+-------
+
+GUILHERME:
+>TODO: VERIFICAR O POR QUE O RELATÓRIO TA COMENDO PÁGINA
+>TODO: FAZER SCRIPT DE CONEXÃO AUTOMÁTICA COM O ANYDESK
+>TODO: MUDAR FUNDO DA PÁGINA DE ADM
+>TODO: ENTENDER POR QUE PELO IP DO HOST NÃO PUXA ALGUNS ITENS
+>TODO: FINALIZAR CONEXÃO E CONVERSÃO DO FLASK PRA DJANGO
+-------
+
+GABRIEL:
+>TODO: FAZER CÓDIGO DE AUTENTICAÇÃO COM O AD
+>TODO: FAZER CONEXÃO COM O BANCO
+>TODO: FAZER TELA DE LOGIN E SENHA COM O AD
+-------
+
+GABRIEL/GUILHERME:
+>TODO: FAZER TELA DOS USUÁRIOS
+>TODO: TESTAR IMPLANTAÇÃO DA LISTA NO SERVIDOR
+>TODO: CRIAR UM ENDEREÇO PRO CAMINHO NO SERVIDOR
+>TODO: MESCLAR TODAS AS PARTES
+>TODO: TESTAR EM PRODUÇÃO
+-------
