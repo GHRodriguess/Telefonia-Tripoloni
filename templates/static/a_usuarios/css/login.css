@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Arima:wght@100..700&family=Cal+Sans&family=Tagesschrift&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 main {
     display: flex;
     justify-content: center;
@@ -27,11 +29,12 @@ main {
     margin-bottom: 30px;
     font-size: 2rem;
     color: #333;    
-    font-weight: 700;    
+    font-weight: 700;  
+    font-family: "Fira Sans", sans-serif;  
 }
 
 form {
-    padding-top: 15%;
+    padding-top: 10%;
     width: 90%;
     display: flex;
     flex-direction: column;
@@ -45,6 +48,7 @@ form {
     margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
+    font-family: "Fira Sans", sans-serif; 
 }
 
 .login-container button {
@@ -64,4 +68,12 @@ form {
 .login-container button:hover {
     background-color: #1c1c77;
     transform: scale(1.05);
+}
+
+.login-container span {
+    padding-top: 3%;
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: "Fira Sans", sans-serif; 
+    color: #ee2020;
 }

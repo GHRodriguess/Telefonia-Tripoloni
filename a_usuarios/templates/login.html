@@ -7,17 +7,16 @@
 
 {% block content%}
     <div class="login-container">
-        <h1>TRIPOLONI</h1>
-        {% if messages %}
-        {% for message in messages %}
-            <p style="color:red;">{{ message }}</p>
-        {% endfor %}
-        {% endif %}
+        <h1>FAÇA SEU LOGIN</h1>
+        
         <form method="post">
             {% csrf_token %}
             <input type="text" name="username" placeholder="Nome de usuário" required />
             <input type="password" name="password" placeholder="Senha" required />
             <button type="submit">Entrar</button>
         </form>
+        {% if message %}
+            <span>{{ message }}</span>
+        {% endif %}
     </div>
 {% endblock %}
