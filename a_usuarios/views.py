@@ -9,7 +9,10 @@ User = get_user_model()
 
 # Create your views here.
 def login_view(request):     
-    context = {}   
+    context = {}  
+    if request.user.is_authenticated:
+        return redirect("logout")  
+
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
