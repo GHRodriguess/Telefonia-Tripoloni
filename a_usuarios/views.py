@@ -14,7 +14,7 @@ def login_view(request):
         username = request.POST.get("username")
         password = request.POST.get("password")
         conexao_ad = Conexão_AD(username, password)
-        autenticated = conexao_ad.autenticar_usuario_ad()        
+        autenticated = conexao_ad.autenticar_usuario_ad() 
         if autenticated:            
             info_user = conexao_ad.get_info_user() 
             grupos = info_user.get("grupos", [])
