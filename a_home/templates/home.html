@@ -1,10 +1,17 @@
 {% extends "partials/base.html" %}
 {% load static %}
 
+{% block extra_styles%}
+    <link rel="stylesheet" href="{% static 'a_home/css/home.css' %}">
+{% endblock %}
+
 {% block navbar %}
     {% include "partials/navbar.html" %}
 {% endblock %}
 
-{% block content %}
-
+{% block content %} 
+    {% include "partials/apps.html" with url="lista_ramal" img="a_home/src/ramal.svg" name_app="LISTA DE RAMAL" %}
+    {% if request.user.is_staff %}
+        {% include "partials/apps.html" with url="home" img="a_home/src/phone.svg" name_app="GERENCIAMENTO DE CHIPS" %}
+    {% endif %}
 {% endblock %}

@@ -36,7 +36,8 @@
     background-image: url("../src/logout.svg");
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 75%;
+    background-size: min(75%, 40px);
+    min-width: 75px;
     width: 2%;
     height: 100%;
     transition: 0.3s all;    
