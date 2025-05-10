@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+.navbar { 
+    background-color: #0a1331;
+    background: linear-gradient(to right, #0c0e3d, #1c1c77); 
+    color: #e2e0e0;
+    transition: 0.3s all;
+    display: flex;
+    justify-content: space-between;    
+    align-items: center;
+    height: 7vh;    
+}
+
+.navbar-title {
+    transition: 0.3s all;
+    color: #e2e0e0;
+    padding-left: 2%;
+    font-family: "Lora", serif;
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.navbar-title:hover { 
+    transform: scale(1.03);
+}
+
+.navbar:hover {  
+    color: #ffffff;
+}
+
+.navbar:hover > .title {
+    transform: scale(1.03);
+}
+
+.logout-button {
+    background-image: url("../src/logout.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 75%;
+    width: 2%;
+    height: 100%;
+    transition: 0.3s all;    
+    margin-right: 1%;
+}
+
+.logout-button:hover {
+    transform: scale(1.1);
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    margin: auto;
+    padding: 0.5%;
+}
+
+.logo {
+    margin-left: 1%;
+    width: auto;
+    height: auto;
+    max-height: 100%;
+}    

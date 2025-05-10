@@ -1,0 +1,9 @@
+{% load static %}
+
+<nav class="navbar">
+    <div class="navbar-left">
+        <img src="{% static 'all\src\logo.png' %}" class="logo" alt="Logo"/>     
+        <a href="{% url 'home' %}" class="navbar-title">Tripoloni Construtora</a>
+    </div>
+    <a href="{% url 'logout' %}" class="logout-button"></a>
+</nav>
