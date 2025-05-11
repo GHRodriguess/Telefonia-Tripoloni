@@ -20,7 +20,7 @@
             <div class="add">
                 <button hx-get="{% url 'add_ramal' open_status=True %}" hx-target="dialog" hx-swap="outerHTML" class="button_add"></button>
             </div>       
-            {% include 'partials/add_ramal.html' with open=open %}     
+            {% include 'partials/edit_ramal.html' with open=open %}     
         {% endif %}
     </div> 
     <div class="tabela">
@@ -46,7 +46,7 @@
                         {% if request.user.is_staff %}
                             <td>{{ r.nome_usuario}}</td>
                             <td>{{ r.anydesk }}</td>                            
-                            <td hx-get="{% url 'add_ramal' open_status='True' ramal_id=r.id %}" hx-target="dialog" hx-swap="outerHTML" class="edit"></td>
+                            <td hx-get="{% url 'edit_ramal' open_status='True' ramal_id=r.id %}" hx-target="dialog" hx-swap="outerHTML" class="edit"></td>
                         {% endif %}
                     </tr>
                 {% endfor %}

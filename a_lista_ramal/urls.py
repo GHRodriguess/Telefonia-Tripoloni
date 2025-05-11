@@ -7,7 +7,12 @@ urlpatterns = [
 ]
 
 htmxurlpatterns = [
-    re_path(r"^add_ramal/(?P<open_status>\w+)/(?:/(?P<ramal_id>\w+))?$", htmxviews.add_ramal, name="add_ramal"),
+    path("add_ramal/<str:open_status>", htmxviews.add_ramal, name="add_ramal"),
+    path("edit_ramal/<str:open_status>/<int:ramal_id>", htmxviews.edit_ramal, name="edit_ramal"),
+    re_path(r"^save_ramal/(?P<open_status>\w+)/(?:/(?P<ramal_id>\d+))?$", htmxviews.save_ramal, name="save_ramal"),
+    path("cancel_add_ramal/<str:open_status>", htmxviews.cancel_add_ramal, name="cancel_add_ramal"),
+    path("delete_ramal/<str:open_status>/<int:ramal_id>", htmxviews.delete_ramal, name="delete_ramal")
+
 ]
 
 urlpatterns += htmxurlpatterns

@@ -15,11 +15,22 @@ dialog {
 .top {
     display: flex;
     justify-content: end;
+    height: 10%;
+}
+
+form {
+    height: 90%;
+}
+
+.main {
+    height: 90%;
 }
 
 .bottom {
     display: flex;
     justify-content: end;
+    height: 10%;
+    align-items: center;
 }
 
 .button_close {
@@ -39,4 +50,59 @@ dialog {
 .button_close:hover {
     background-image: url("../src/close_hover.svg");
     background-size: 100%;
+}
+
+.button_delete {
+    width: 6vh;
+    height: 6vh;
+    background-image: url('../src/delete.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 70%;
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.button_delete:hover {
+    background-image: url("../src/delete_hover.svg");
+    background-size: 85%;
+}
+
+.button_cancel,
+.button_save {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s;
+    margin: 0.5% 0;
+    margin-right: 0.5%;    
+    border: 1px solid rgba(0, 0, 0, 0.432);
+    height: 60%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.button_cancel {
+    background: #ccc;
+    color: #000;
+}
+
+.button_cancel:hover {
+    background: #bbb;
+    transform: scale(1.05);
+}
+
+.button_save {
+    background: #28a745;
+    color: #fff;
+}
+
+.button_save:hover {
+    background: #218838;
+    transform: scale(1.05);
 }

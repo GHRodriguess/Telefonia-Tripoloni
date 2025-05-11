@@ -1,0 +1,43 @@
+<dialog {{ open }}>
+    <div class="top">
+        <button hx-get="{% url 'add_ramal' open_status=False %}" hx-target="dialog" hx-swap="outerHTML" class="button_close"></button>
+    </div>
+    <form method="post">
+        <div class="main">        
+            {% csrf_token %}    
+            <label for="id_nome_usuario">Usuário:</label>
+            <input type="text" name="nome_usuario" id="id_nome_usuario" maxlength="50" required>
+
+            <label for="id_nome_completo">Nome completo:</label>
+            <input type="text" name="nome_completo" id="id_nome_completo" maxlength="50">
+
+            <label for="id_email">Email:</label>
+            <input type="email" name="email" id="id_email" required>
+
+            <label for="id_nome">Nome:</label>
+            <input type="text" name="nome" id="id_nome" maxlength="50">
+
+            <label for="id_sobrenome">Sobrenome:</label>
+            <input type="text" name="sobrenome" id="id_sobrenome" maxlength="50">
+
+            <label for="id_ramal">Ramal:</label>
+            <input type="text" name="ramal" id="id_ramal" maxlength="4" value="">
+
+            <label for="id_anydesk">AnyDesk:</label>
+            <input type="text" name="anydesk" id="id_anydesk" maxlength="10">
+        </div>
+        <div class="bottom">   
+            {% if id %}         
+            <button hx-post="{% url 'delete_ramal' open_status=False ramal_id=id %}" hx-target="body" hx-swap="outerHTML" class="button_delete"></button>
+            {% endif %} 
+            <button hx-get="{% url 'cancel_add_ramal' open_status=False %}" hx-target="dialog" hx-swap="outerHTML" class="button_cancel">CANCELAR</button>
+            {% if id %}
+                <button hx-post="{% url 'save_ramal' open_status=False  ramal_id=id %}" hx-target="body" hx-swap="outerHTML" class="button_save">SALVAR</button>
+            {% else %}
+                <button hx-post="{% url 'save_ramal' open_status=False  %}" hx-target="body" hx-swap="outerHTML" class="button_save">SALVAR</button>
+            {% endif %}
+            
+        </div>
+    </form>
+    
+</dialog>
