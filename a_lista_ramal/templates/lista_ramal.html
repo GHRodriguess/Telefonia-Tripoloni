@@ -2,7 +2,8 @@
 {% load static %}
 
 {% block extra_styles %}
-    <link rel="stylesheet" href="{% static 'a_lista_ramal/css/lista_ramal.css' %}">
+    <link rel="stylesheet" href="{% static 'a_lista_ramal/css/lista_ramal.css'%}">
+    <link rel="stylesheet" href="{% static 'a_lista_ramal/css/add_ramal.css'%}">
 {% endblock %}
 
 {% block navbar %}
@@ -10,5 +11,51 @@
 {% endblock %}
 
 {% block content %}
+    <div class="func">
+        <div class="search">
+            <img src="{% static 'a_lista_ramal/src/search.svg' %}" alt="">
+            <input type="text">
+        </div>
+        {% if request.user.is_staff%}
+            <div class="add">
+                <button hx-get="{% url 'add_ramal' open_status=True %}" hx-target="dialog" hx-swap="outerHTML" class="button_add"></button>
+            </div>       
+            {% include 'partials/add_ramal.html' with open=open %}     
+        {% endif %}
+    </div> 
+    <div class="tabela">
+        <table>
+            <thead>
+                <tr>  
+                    <th>Nome Completo</th>
+                    <th>Ramal</th>
+                    <th>Email</th>
+                    {% if request.user.is_staff %}
+                        <th>Nome de Usuário</th>
+                        <th>Anydesk</th>
+                        <th></th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for r in ramais %}
+                    <tr>
+                        <td>{{ r.nome_completo }}</td>
+                        <td>{{ r.ramal }}</td>
+                        <td>{{ r.email }}</td>
+                        {% if request.user.is_staff %}
+                            <td>{{ r.nome_usuario}}</td>
+                            <td>{{ r.anydesk }}</td>                            
+                            <td hx-get="{% url 'add_ramal' open_status='True' ramal_id=r.id %}" hx-target="dialog" hx-swap="outerHTML" class="edit"></td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
+{% endblock %}
+
+{% block extra_scripts %}
+    <script src="{% static 'a_lista_ramal/js/lista_ramal.js' %}"></script>
 {% endblock %}

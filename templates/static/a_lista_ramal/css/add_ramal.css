@@ -1,0 +1,42 @@
+dialog {
+    position: fixed;
+    top: 55%;
+    left: 50%;
+    width: 95%;
+    height: 80%;
+    transform: translate(-50%, -50%);
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 0, 0, 0.582);
+}
+
+.top {
+    display: flex;
+    justify-content: end;
+}
+
+.bottom {
+    display: flex;
+    justify-content: end;
+}
+
+.button_close {
+    width: 6vh;
+    height: 6vh;
+    background-image: url('../src/close.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 80%;
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.button_close:hover {
+    background-image: url("../src/close_hover.svg");
+    background-size: 100%;
+}
