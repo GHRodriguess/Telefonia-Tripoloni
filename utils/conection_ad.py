@@ -5,9 +5,13 @@ from ldap3  import Server, NTLM, core, Connection, ALL, SUBTREE
 load_dotenv()
 
 class Conexão_AD():
-    def __init__(self, username, password):
-        self.username = username
-        self.password = password
+    def __init__(self, username=None, password=None):
+        if username and password:
+            self.username = username
+            self.password = password
+        else:
+            self.username = os.getenv("nome_usuario_ad")
+            self.password = os.getenv("senha_ad")
         self.servidor_ad = os.getenv("servidor_ad")
         self.dominio = os.getenv("dominio")    
         self.base_dn = os.getenv("base_dn")
@@ -31,8 +35,10 @@ class Conexão_AD():
             print(e)
             return False
     
-    def get_info_user(self):
-        filtro = f'(sAMAccountName={self.username})'
+    def get_info_user(self, user_search=None):
+        user_search = self.username if user_search == None else user_search
+        print(user_search)
+        filtro = f'(sAMAccountName={user_search})'
         atributos = ['displayName', 'mail', 'givenName', 'sn', 'memberOf']
         self.conecta_ad()
         self.conexao.search(search_base=self.base_dn, search_filter=filtro, search_scope=SUBTREE, attributes=atributos)

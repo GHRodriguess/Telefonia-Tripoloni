@@ -1,11 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import *
+from utils.conection_ad import *
 
 def add_ramal(request, open_status):
     context = {}   
-    context["open"] = "open" if open_status== "True" else "" 
-    if request.method == "POST":
-        print("POST")
+    context["open"] = "open" if open_status== "True" else ""     
     return render(request, "partials/edit_ramal.html", context=context) 
 
 def edit_ramal(request, open_status, ramal_id):
@@ -13,26 +12,41 @@ def edit_ramal(request, open_status, ramal_id):
     context["open"] = "open" if open_status== "True" else ""  
     if ramal_id:
         ramal = get_object_or_404(Ramal, id=ramal_id)
-        print(ramal)
         context["id"] = ramal_id
         ramal = Ramal.objects.filter(id=ramal_id).first()
-        print(ramal.nome_usuario)
-        print(ramal.nome_completo)
-        print(ramal.email)
-        print(ramal.nome)
-        print(ramal.sobrenome)
-        print(ramal.ramal) 
-        print(ramal.anydesk)
+        context["nome_usuario"] = ramal.nome_usuario
+        context["nome_completo"] = f"{ramal.nome} {ramal.sobrenome}" 
+        context["email"] = ramal.email
+        context["nome"] = ramal.nome
+        context["sobrenome"] = ramal.sobrenome
+        context["ramal"] = ramal.ramal
+        context["anydesk"] = ramal.anydesk
         
     return render(request, "partials/edit_ramal.html", context=context) 
 
 def save_ramal(request, open_status, ramal_id=None):
     context = {}    
     context["open"] = "open" if open_status== "True" else ""  
-    if ramal_id:
-        print("Tem ramal id, dar UPDATE")
-    else:
-        print("Não tem ramal ID, CRIAR")
+    if request.method == "POST":
+        nome_usuario = request.POST.get("nome_usuario")
+        nome_completo = request.POST.get("nome_completo")
+        email = request.POST.get("email")
+        nome = request.POST.get("nome")
+        sobrenome = request.POST.get("sobrenome")
+        ramal = request.POST.get("ramal")
+        anydesk = request.POST.get("anydesk")
+        
+    
+        ramal, criado = Ramal.objects.update_or_create(
+        nome_usuario=nome_usuario,
+        defaults={
+            'nome_completo': nome_completo,
+            'email': email,
+            'nome': nome,
+            'sobrenome': sobrenome,
+            'ramal': ramal,
+            'anydesk': anydesk
+        })        
     
     return redirect('lista_ramal')
 
@@ -45,7 +59,21 @@ def delete_ramal(request, open_status, ramal_id):
     context = {}    
     context["open"] = "open" if open_status== "True" else ""    
     if ramal_id:
-        ramal = get_object_or_404(Ramal, id=ramal_id)
-        print(ramal)
+        ramal = get_object_or_404(Ramal, id=ramal_id)        
         ramal.delete()
     return redirect('lista_ramal')
+
+def get_data_ad(request):
+    context = {}
+    context["open"] = "open"    
+    if request.method == "POST":
+        conexao_ad = Conexão_AD()
+        nome_usuario = request.POST.get("nome_usuario")
+        data = conexao_ad.get_info_user(nome_usuario)                
+        context["nome_usuario"] = nome_usuario 
+        context["nome_completo"] = f"{data.get('nome', '')} {data.get('sobrenome', '')}" 
+        context["email"] = data.get("email", "")
+        context["nome"] = data.get("nome", "")
+        context["sobrenome"] = data.get("sobrenome", "")         
+        
+    return render(request, "partials/edit_ramal.html", context=context) 

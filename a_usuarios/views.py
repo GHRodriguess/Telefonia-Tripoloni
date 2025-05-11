@@ -3,7 +3,7 @@ from utils.global_utils import  check_permission
 from django.contrib.auth import login, logout, authenticate, get_user_model
 from django.contrib.auth.models import Group
 from django.views.decorators.csrf import csrf_exempt
-from .utils import *
+from utils.conection_ad import *
 
 User = get_user_model()
 
@@ -14,7 +14,7 @@ def login_view(request):
         return redirect("logout")  
 
     if request.method == "POST":
-        username = request.POST.get("username")
+        username = request.POST.get("username")        
         password = request.POST.get("password")
         conexao_ad = Conexão_AD(username, password)
         authenticated = conexao_ad.autenticar_usuario_ad()         

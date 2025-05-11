@@ -12,7 +12,7 @@
 
 {% block content %}
     <div class="func">
-        <div class="search">
+        <div class="search" {% if not request.user.is_staff %}style="width: 100%;"{% endif %}>
             <img src="{% static 'a_lista_ramal/src/search.svg' %}" alt="">
             <input type="text">
         </div>
