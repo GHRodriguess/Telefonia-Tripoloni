@@ -66,14 +66,16 @@ def delete_ramal(request, open_status, ramal_id):
 def get_data_ad(request):
     context = {}
     context["open"] = "open"    
-    if request.method == "POST":
+    if request.method == "POST":        
         conexao_ad = Conexão_AD()
         nome_usuario = request.POST.get("nome_usuario")
-        data = conexao_ad.get_info_user(nome_usuario)                
         context["nome_usuario"] = nome_usuario 
-        context["nome_completo"] = f"{data.get('nome', '')} {data.get('sobrenome', '')}" 
-        context["email"] = data.get("email", "")
-        context["nome"] = data.get("nome", "")
-        context["sobrenome"] = data.get("sobrenome", "")         
+        data = conexao_ad.get_info_user(nome_usuario)  
+        if data:              
+            context["nome_usuario"] = nome_usuario 
+            context["nome_completo"] = f"{data.get('nome', '')} {data.get('sobrenome', '')}" 
+            context["email"] = data.get("email", "")
+            context["nome"] = data.get("nome", "")
+            context["sobrenome"] = data.get("sobrenome", "")         
         
     return render(request, "partials/edit_ramal.html", context=context) 

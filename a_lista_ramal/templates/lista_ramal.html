@@ -12,10 +12,11 @@
 
 {% block content %}
     <div class="func">
-        <div class="search" {% if not request.user.is_staff %}style="width: 100%;"{% endif %}>
-            <img src="{% static 'a_lista_ramal/src/search.svg' %}" alt="">
-            <input type="text">
-        </div>
+        <form class="search" {% if not request.user.is_staff %}style="width: 100%;"{% endif %}>
+            {% csrf_token %}   
+            <img src="{% static 'a_lista_ramal/src/search.svg' %}" alt="">     
+            <input type="text" name="busca" hx-get="{% url 'lista_ramal' %}" value="{{ request.GET.busca }}" hx-trigger="keyup changed delay:500ms" hx-target="body" hx-swap="outerHTML" autocomplete="off"/>
+        </form>
         {% if request.user.is_staff%}
             <div class="add">
                 <button hx-get="{% url 'add_ramal' open_status=True %}" hx-target="dialog" hx-swap="outerHTML" class="button_add"></button>

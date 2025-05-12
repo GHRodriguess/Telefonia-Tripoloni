@@ -10,3 +10,19 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+document.addEventListener('htmx:afterSwap', (event) => {
+    // Se o input ainda existir na nova página, recoloque o foco nele
+    const input_busca = document.querySelector("input[name='busca']");
+    if (input_busca) {
+        input_busca.focus();
+        // Coloca o cursor no final do texto
+        input_busca.selectionStart = input_busca.selectionEnd = input_busca.value.length;
+    }
+    const input_nome_usuario = document.querySelector("input[name=nome_usuario]")
+    if (input_nome_usuario) {
+        input_nome_usuario.focus();
+        input_nome_usuario.selectionStart = input_nome_usuario.selectionEnd = input_nome_usuario.value.length;
+    }
+
+});
