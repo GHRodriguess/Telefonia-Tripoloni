@@ -31,6 +31,7 @@
                     <th>Nome Completo</th>
                     <th>Ramal</th>
                     <th>Email</th>
+                    <th>Setor</th>
                     {% if request.user.is_staff %}
                         <th>Nome de Usuário</th>
                         <th>Anydesk</th>
@@ -44,6 +45,7 @@
                         <td>{{ r.nome_completo }}</td>
                         <td>{{ r.ramal }}</td>
                         <td>{{ r.email }}</td>
+                        <td>{{ r.setor }}</td>
                         {% if request.user.is_staff %}
                             <td>{{ r.nome_usuario}}</td>
                             <td>{{ r.anydesk }}</td>                            

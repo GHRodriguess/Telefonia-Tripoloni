@@ -21,6 +21,7 @@ def edit_ramal(request, open_status, ramal_id):
         context["sobrenome"] = ramal.sobrenome
         context["ramal"] = ramal.ramal
         context["anydesk"] = ramal.anydesk
+        context["setor"] = ramal.setor  
         
     return render(request, "partials/edit_ramal.html", context=context) 
 
@@ -35,7 +36,7 @@ def save_ramal(request, open_status, ramal_id=None):
         sobrenome = request.POST.get("sobrenome")
         ramal = request.POST.get("ramal")
         anydesk = request.POST.get("anydesk")
-        
+        setor = request.POST.get("setor")
     
         ramal, criado = Ramal.objects.update_or_create(
         nome_usuario=nome_usuario,
@@ -45,7 +46,8 @@ def save_ramal(request, open_status, ramal_id=None):
             'nome': nome,
             'sobrenome': sobrenome,
             'ramal': ramal,
-            'anydesk': anydesk
+            'anydesk': anydesk,
+            'setor': setor
         })        
     
     return redirect('lista_ramal')
@@ -76,6 +78,7 @@ def get_data_ad(request):
             context["nome_completo"] = f"{data.get('nome', '')} {data.get('sobrenome', '')}" 
             context["email"] = data.get("email", "")
             context["nome"] = data.get("nome", "")
-            context["sobrenome"] = data.get("sobrenome", "")         
+            context["sobrenome"] = data.get("sobrenome", "")     
+            context["setor"] = data.get("setor", "")    
         
     return render(request, "partials/edit_ramal.html", context=context) 

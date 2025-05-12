@@ -36,20 +36,28 @@ class Conexão_AD():
             return False
     
     def get_info_user(self, user_search=None):
-        user_search = self.username if user_search == None else user_search
-        print(user_search)
+        user_search = self.username if user_search == None else user_search        
         filtro = f'(sAMAccountName={user_search})'
-        atributos = ['displayName', 'mail', 'givenName', 'sn', 'memberOf']
+        atributos = ['displayName', 'mail', 'givenName', 'sn', 'memberOf', 'distinguishedName']
         self.conecta_ad()
         self.conexao.search(search_base=self.base_dn, search_filter=filtro, search_scope=SUBTREE, attributes=atributos)
         if self.conexao.entries:
             dados_usuario = self.conexao.entries[0]
-            self.desconecta_ad()            
+            self.desconecta_ad()       
+            dn = dados_usuario.distinguishedName.value
+            partes = dn.split(",")
+            setor = None            
+            for parte in partes:                
+                if parte.strip().startswith("OU="):
+                    setor = parte.replace("OU=", "")
+                    break
+            
             return {
                 'nome_completo': dados_usuario.displayName.value,
                 'email': dados_usuario.mail.value,
                 'nome': dados_usuario.givenName.value,
                 'sobrenome': dados_usuario.sn.value,
-                'grupos': dados_usuario.memberOf.values
+                'grupos': dados_usuario.memberOf.values,
+                'setor': setor
             }     
-    
+        
