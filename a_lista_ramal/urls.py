@@ -13,6 +13,7 @@ htmxurlpatterns = [
     path("cancel_add_ramal/<str:open_status>", htmxviews.cancel_add_ramal, name="cancel_add_ramal"),
     path("delete_ramal/<str:open_status>/<int:ramal_id>", htmxviews.delete_ramal, name="delete_ramal"),
     path("get_data_ad", htmxviews.get_data_ad, name="get_data_ad"),
+    path("gerar_pdf", htmxviews.gerar_pdf, name="gerar_pdf") 
 ]
 
 urlpatterns += htmxurlpatterns

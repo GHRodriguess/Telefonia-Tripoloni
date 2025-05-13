@@ -1,6 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.template.loader import render_to_string
+from django.http import HttpResponse
+from weasyprint import HTML
 from .models import *
 from utils.conection_ad import *
+from .utils import *
 
 def add_ramal(request, open_status):
     context = {}   
@@ -48,9 +52,9 @@ def save_ramal(request, open_status, ramal_id=None):
             'ramal': ramal,
             'anydesk': anydesk,
             'setor': setor
-        })        
+        })   
     
-    return redirect('lista_ramal')
+    return redirect("lista_ramal")
 
 def cancel_add_ramal(request, open_status):
     context = {}   
@@ -63,7 +67,8 @@ def delete_ramal(request, open_status, ramal_id):
     if ramal_id:
         ramal = get_object_or_404(Ramal, id=ramal_id)        
         ramal.delete()
-    return redirect('lista_ramal')
+        
+    return redirect("lista_ramal")
 
 def get_data_ad(request):
     context = {}
@@ -82,3 +87,14 @@ def get_data_ad(request):
             context["setor"] = data.get("setor", "")    
         
     return render(request, "partials/edit_ramal.html", context=context) 
+
+
+def gerar_pdf(request):  
+    ramais = Ramal.objects.all()
+        
+    html_string = render_to_string('partials/tabela_ramal_pdf.html', {'ramais': ramais, 'request': request})
+    pdf_bytes = HTML(string=html_string, base_url=request.build_absolute_uri('/')).write_pdf()
+
+    response = HttpResponse(pdf_bytes, content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="ramais.pdf"'  # força download
+    return response

@@ -26,3 +26,20 @@ document.addEventListener('htmx:afterSwap', (event) => {
     }
 
 });
+
+function BaixarPDF(button) {
+    const urlGerarPDF = button.getAttribute('data-url');    
+    fetch(urlGerarPDF)
+        .then(response => response.blob())
+        .then(blob => {
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = "ramais.pdf";
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            window.URL.revokeObjectURL(url);
+        })
+        .catch(error => console.error("Erro ao baixar PDF:", error));
+}

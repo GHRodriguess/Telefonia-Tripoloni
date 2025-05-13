@@ -15,8 +15,11 @@
         <form class="search" {% if not request.user.is_staff %}style="width: 100%;"{% endif %}>
             {% csrf_token %}   
             <img src="{% static 'a_lista_ramal/src/search.svg' %}" alt="">     
-            <input type="text" name="busca" hx-get="{% url 'lista_ramal' %}" value="{{ request.GET.busca }}" hx-trigger="keyup changed delay:500ms" hx-target="body" hx-swap="outerHTML" autocomplete="off"/>
+            <input type="text" name="busca" hx-get="{% url 'lista_ramal' %}" hx-trigger="keyup changed delay:500ms" value="{{request.GET.busca}}" hx-target="body" hx-swap="outerHTML" autocomplete="off"/>
         </form>
+        <div class="pdf">   
+            <button data-url="{% url 'gerar_pdf' %}" onclick="BaixarPDF(this)"></button>         
+        </div>
         {% if request.user.is_staff%}
             <div class="add">
                 <button hx-get="{% url 'add_ramal' open_status=True %}" hx-target="dialog" hx-swap="outerHTML" class="button_add"></button>
@@ -24,38 +27,7 @@
             {% include 'partials/edit_ramal.html' with open=open %}     
         {% endif %}
     </div> 
-    <div class="tabela">
-        <table>
-            <thead>
-                <tr>  
-                    <th>Nome Completo</th>
-                    <th>Ramal</th>
-                    <th>Email</th>
-                    <th>Setor</th>
-                    {% if request.user.is_staff %}
-                        <th>Nome de Usuário</th>
-                        <th>Anydesk</th>
-                        <th></th>
-                    {% endif %}
-                </tr>
-            </thead>
-            <tbody>
-                {% for r in ramais %}
-                    <tr>
-                        <td>{{ r.nome_completo }}</td>
-                        <td>{{ r.ramal }}</td>
-                        <td>{{ r.email }}</td>
-                        <td>{{ r.setor }}</td>
-                        {% if request.user.is_staff %}
-                            <td>{{ r.nome_usuario}}</td>
-                            <td>{{ r.anydesk }}</td>                            
-                            <td hx-get="{% url 'edit_ramal' open_status='True' ramal_id=r.id %}" hx-target="dialog" hx-swap="outerHTML" class="edit"></td>
-                        {% endif %}
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+    {% include "partials/tabela_ramal.html" %}
 
 {% endblock %}
 

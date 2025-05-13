@@ -35,8 +35,32 @@ main {
     outline: none;
 }
 
+.pdf {
+    margin-left: 1%;;
+    width: 5%;
+    height: 100%;
+}
+
+.pdf button {
+    width: 6vh;
+    height: 6vh;
+    background-image: url('../src/pdf.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 70%;
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.pdf button:hover {
+    background-image: url("../src/pdf_hover.svg");
+    background-size: 85%;
+}
+
 .add {
-    margin-left: 1%;
     width: 4%;
     height: 100%;
 }
@@ -116,3 +140,4 @@ th, td {
 .edit:hover {
     transform: scale(1.1);
 }
+

@@ -1,0 +1,68 @@
+<style>
+    .tabela {
+        overflow-x: auto;       
+        margin: 0;   
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+        width: 100%;
+        border: 1px solid #0c0e3d7e;
+    }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: auto;
+        border-radius: 8px;
+        overflow: hidden;
+        font-family: Arial, sans-serif;
+    }
+    
+    thead {
+        background: linear-gradient(to right, #0c0e3d, #1c1c77); 
+        color: #fff;
+        font-family: "Lora", serif;
+        font-size: 1rem;
+        font-weight: 400;
+    }
+    
+    th, td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;        
+    }
+
+    td {
+        border-right: 0.1px solid #bbb;
+        border-left: 0.1px solid #bbb;
+    }
+
+    tbody {        
+        font-family: "Lora", serif;
+        font-size: 0.8rem;
+        font-weight: 300;
+    }
+</style>
+
+<div class="tabela">
+    <table>
+        <thead>
+            <tr>  
+                <th>Nome Completo</th>
+                <th>Ramal</th>
+                <th>Email</th>
+                <th>Setor</th>                
+            </tr>
+        </thead>
+        <tbody>
+            {% for r in ramais %}
+                <tr>
+                    <td>{{ r.nome_completo }}</td>
+                    <td>{{ r.ramal }}</td>
+                    <td>{{ r.email }}</td>
+                    <td>{{ r.setor }}</td>                    
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
