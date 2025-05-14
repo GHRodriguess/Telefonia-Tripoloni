@@ -39,27 +39,39 @@ def save_ramal(request, open_status, ramal_id=None):
     context = {}    
     context["open"] = "open" if open_status== "True" else ""  
     if request.method == "POST":
-        nome_usuario = request.POST.get("nome_usuario")
+        nome_usuario = request.POST.get("nome_usuario", None)
         nome_completo = request.POST.get("nome_completo")
-        email = request.POST.get("email")
+        email = request.POST.get("email")        
         nome = request.POST.get("nome")
         sobrenome = request.POST.get("sobrenome")
         ramal = request.POST.get("ramal")
         anydesk = request.POST.get("anydesk")
         setor = request.POST.get("setor")
-    
-        ramal, criado = Ramal.objects.update_or_create(
-        nome_usuario=nome_usuario,
-        defaults={
-            'nome_completo': nome_completo,
-            'email': email,
-            'nome': nome,
-            'sobrenome': sobrenome,
-            'ramal': ramal,
-            'anydesk': anydesk,
-            'setor': setor
-        })   
-    
+        if nome_usuario == "":
+            ramal, criado = Ramal.objects.update_or_create(
+            nome_completo=nome_completo,
+            defaults={
+                'nome_usuario': nome_usuario,
+                'email': email,
+                'nome': nome,
+                'sobrenome': sobrenome,
+                'ramal': ramal,
+                'anydesk': anydesk,
+                'setor': setor
+            })   
+        else:
+            ramal, criado = Ramal.objects.update_or_create(
+            nome_usuario=nome_usuario,
+            defaults={
+                'nome_completo': nome_completo,
+                'email': email,
+                'nome': nome,
+                'sobrenome': sobrenome,
+                'ramal': ramal,
+                'anydesk': anydesk,
+                'setor': setor
+            })   
+        
     return redirect("lista_ramal")
 
 @check_permission(permissions=['login_required', 'ti_member'])

@@ -77,12 +77,21 @@ WSGI_APPLICATION = 'p_telefonia_tripoloni.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+#MAPEANDO A PASTA CST
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': 'T:\TI\Telefonia\db.sqlite3',
     }
 }
+
+#LOGADO COM UM USUÁRIO QUE TEM PERMISSÃO
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': r'\\172.16.1.196\cst\TI\Telefonia\db.sqlite3',
+#    }
+#}
 
 
 # Password validation

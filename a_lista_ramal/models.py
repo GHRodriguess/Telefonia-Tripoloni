@@ -4,7 +4,7 @@ from django.db import models
 class Ramal(models.Model):    
     nome_usuario = models.CharField(max_length=50, blank=True)
     nome_completo = models.CharField(max_length=50, blank=True)
-    email = models.EmailField(unique=True, blank=True)
+    email = models.EmailField(blank=True)
     nome = models.CharField(max_length=50, blank=True)
     sobrenome = models.CharField(max_length=50, blank=True)
     ramal = models.CharField(max_length=4, default='', blank=True)
