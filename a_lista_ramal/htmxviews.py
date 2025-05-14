@@ -91,7 +91,7 @@ def get_data_ad(request):
 
 def gerar_pdf(request):  
     ramais = Ramal.objects.all()
-        
+    ramais = ramais.order_by("setor")
     html_string = render_to_string('partials/tabela_ramal_pdf.html', {'ramais': ramais, 'request': request})
     pdf_bytes = HTML(string=html_string, base_url=request.build_absolute_uri('/')).write_pdf()
 

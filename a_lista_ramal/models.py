@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class Ramal(models.Model):    
-    nome_usuario = models.CharField(max_length=50, unique=True, blank=False)
+    nome_usuario = models.CharField(max_length=50, blank=True)
     nome_completo = models.CharField(max_length=50, blank=True)
     email = models.EmailField(unique=True, blank=True)
     nome = models.CharField(max_length=50, blank=True)

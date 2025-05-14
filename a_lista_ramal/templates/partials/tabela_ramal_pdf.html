@@ -1,46 +1,40 @@
 <style>
     .tabela {
-        overflow-x: auto;       
-        margin: 0;   
-        background-color: #fff;
-        border-radius: 8px;
-        box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
         width: 100%;
-        border: 1px solid #0c0e3d7e;
+        max-width: 1000px;
+        margin: 0 auto;
+        font-family: Arial, sans-serif;
+        font-size: 13px;
+        border: 1px solid #000;
+        border-collapse: collapse;
     }
-    
+
     table {
         width: 100%;
         border-collapse: collapse;
-        table-layout: auto;
-        border-radius: 8px;
-        overflow: hidden;
-        font-family: Arial, sans-serif;
     }
-    
+
     thead {
-        background: linear-gradient(to right, #0c0e3d, #1c1c77); 
-        color: #fff;
-        font-family: "Lora", serif;
-        font-size: 1rem;
-        font-weight: 400;
+        background-color: #333;
+        color: white;
     }
-    
+
     th, td {
-        padding: 12px 15px;
+        border: 1px solid #999;
+        padding: 4px 8px;
         text-align: left;
-        border-bottom: 1px solid #ddd;        
     }
 
-    td {
-        border-right: 0.1px solid #bbb;
-        border-left: 0.1px solid #bbb;
+    th {
+        font-weight: bold;
     }
 
-    tbody {        
-        font-family: "Lora", serif;
-        font-size: 0.8rem;
-        font-weight: 300;
+    tbody tr:nth-child(odd) {
+        background-color: #f9f9f9;
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: #fff;
     }
 </style>
 
