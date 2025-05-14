@@ -129,6 +129,19 @@ th, td {
     
 }
 
+.td_anydesk {
+    background-image: url("../src/anydesk.svg");
+    background-position: center;
+    background-size: 10%;
+    background-repeat: no-repeat;
+    transition: 0.3s all;
+}
+
+.td_anydesk:hover {
+    background-image: url("../src/anydesk_hover.svg");
+    background-size: 13%;
+}
+
 .edit {
     background-image: url("../src/edit.svg");
     background-repeat: no-repeat;

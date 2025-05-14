@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.template.loader import render_to_string
 from django.http import HttpResponse
 from weasyprint import HTML
+import os
+import subprocess
 from .models import *
 from utils.conection_ad import *
 from .utils import *
@@ -96,5 +98,16 @@ def gerar_pdf(request):
     pdf_bytes = HTML(string=html_string, base_url=request.build_absolute_uri('/')).write_pdf()
 
     response = HttpResponse(pdf_bytes, content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="ramais.pdf"'  # força download
+    response['Content-Disposition'] = 'attachment; filename="ramais.pdf"'
     return response
+
+def conecta_anydesk(request, anydesk_id):
+    possible_paths = [
+        os.path.join(os.environ.get("ProgramFiles", ""), "AnyDesk", "AnyDesk.exe"),
+        os.path.join(os.environ.get("ProgramFiles(x86)", ""), "AnyDesk", "AnyDesk.exe")
+]
+    anydesk_path = next((path for path in possible_paths if os.path.exists(path)), None)
+    if anydesk_path:        
+        subprocess.Popen([anydesk_path, anydesk_id])
+
+    return HttpResponse(status=204)

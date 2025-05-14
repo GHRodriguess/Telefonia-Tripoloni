@@ -22,7 +22,12 @@
                     <td>{{ r.setor }}</td>
                     {% if request.user.is_staff %}
                         <td>{{ r.nome_usuario}}</td>
-                        <td>{{ r.anydesk }}</td>                            
+                        {% if r.anydesk %}
+                        <td class="td_anydesk" hx-get="{% url 'conecta_anydesk' r.anydesk %}"></td>
+                        {% else %}
+                        <td >{{ r.anydesk }}</td>                            
+                        {% endif %}
+                        
                         <td hx-get="{% url 'edit_ramal' open_status='True' ramal_id=r.id %}" hx-target="dialog" hx-swap="outerHTML" class="edit"></td>
                     {% endif %}
                 </tr>
