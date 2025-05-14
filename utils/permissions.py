@@ -20,10 +20,19 @@ class Permissions:
                 'action': ['redirect', 'login'],
                 'next': True,
             },
+            'ti_member': {
+                'func': self.ti_member,
+                'message': "You must be Staff",
+                'action': ["redirect", "page_401"],
+                'next': False, 
+            },
         }
         
     def login_required(self):
         return self.user.is_authenticated   
+    
+    def ti_member(request):        
+        return request.user.is_staff
     
     def check_permissions(self):
         user_permissions = []

@@ -26,7 +26,7 @@ def check_permission(permissions=[]):
                         url = f"{redirect_url}?next={current_url}"                    
                         request.session['next'] = current_url                        
                     else:                        
-                        url = reverse(*args)
+                        url = reverse(*args)                 
                     return actions[action](url)
                 
             return view_func(request, *args, **view_kwargs)  

@@ -4,15 +4,18 @@ from django.http import HttpResponse
 from weasyprint import HTML
 import os
 import subprocess
+from utils.global_utils import  check_permission
 from .models import *
 from utils.conection_ad import *
 from .utils import *
 
+@check_permission(permissions=['login_required', 'ti_member'])
 def add_ramal(request, open_status):
     context = {}   
     context["open"] = "open" if open_status== "True" else ""     
     return render(request, "partials/edit_ramal.html", context=context) 
 
+@check_permission(permissions=['login_required', 'ti_member'])
 def edit_ramal(request, open_status, ramal_id):
     context = {}    
     context["open"] = "open" if open_status== "True" else ""  
@@ -31,6 +34,7 @@ def edit_ramal(request, open_status, ramal_id):
         
     return render(request, "partials/edit_ramal.html", context=context) 
 
+@check_permission(permissions=['login_required', 'ti_member'])
 def save_ramal(request, open_status, ramal_id=None):
     context = {}    
     context["open"] = "open" if open_status== "True" else ""  
@@ -58,11 +62,13 @@ def save_ramal(request, open_status, ramal_id=None):
     
     return redirect("lista_ramal")
 
+@check_permission(permissions=['login_required', 'ti_member'])
 def cancel_add_ramal(request, open_status):
     context = {}   
     context["open"] = "open" if open_status== "True" else "" 
     return render(request, "partials/edit_ramal.html", context=context) 
 
+@check_permission(permissions=['login_required', 'ti_member'])
 def delete_ramal(request, open_status, ramal_id):
     context = {}    
     context["open"] = "open" if open_status== "True" else ""    
@@ -72,6 +78,7 @@ def delete_ramal(request, open_status, ramal_id):
         
     return redirect("lista_ramal")
 
+@check_permission(permissions=['login_required', 'ti_member'])
 def get_data_ad(request):
     context = {}
     context["open"] = "open"    
@@ -90,7 +97,7 @@ def get_data_ad(request):
         
     return render(request, "partials/edit_ramal.html", context=context) 
 
-
+@check_permission(permissions=['login_required'])
 def gerar_pdf(request):  
     ramais = Ramal.objects.all()
     ramais = ramais.order_by("setor")
@@ -101,6 +108,7 @@ def gerar_pdf(request):
     response['Content-Disposition'] = 'attachment; filename="ramais.pdf"'
     return response
 
+@check_permission(permissions=['login_required', 'ti_member'])
 def conecta_anydesk(request, anydesk_id):
     possible_paths = [
         os.path.join(os.environ.get("ProgramFiles", ""), "AnyDesk", "AnyDesk.exe"),
