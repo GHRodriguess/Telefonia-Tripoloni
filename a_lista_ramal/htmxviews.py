@@ -107,7 +107,7 @@ def get_data_ad(request):
             context["sobrenome"] = data.get("sobrenome", "")     
             context["setor"] = data.get("setor", "")    
         
-    return redirect(request, "partials/edit_ramal.html", context=context) 
+    return render(request, "partials/edit_ramal.html", context=context)
 
 @check_permission(permissions=['login_required'])
 def gerar_pdf(request):  
