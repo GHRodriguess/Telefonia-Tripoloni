@@ -39,13 +39,13 @@
         </div>
         <div class="bottom">   
             {% if id %}         
-            <button hx-post="{% url 'delete_ramal' open_status=False ramal_id=id %}" hx-target="body" hx-swap="outerHTML" class="button_delete"></button>
+            <button hx-post="{% url 'delete_ramal' open_status=False ramal_id=id %}" hx-target="body" hx-swap="outerHTML" class="button_delete" type="button"></button>
             {% endif %} 
-            <button hx-get="{% url 'cancel_add_ramal' open_status=False %}" hx-target="dialog" hx-swap="outerHTML" class="button_cancel">CANCELAR</button>
+            <button hx-get="{% url 'cancel_add_ramal' open_status=False %}" hx-target="dialog" hx-swap="outerHTML" class="button_cancel" type="button">CANCELAR</button>
             {% if id %}
-                <button hx-post="{% url 'save_ramal' open_status=False  ramal_id=id %}" hx-target="body" hx-swap="outerHTML" class="button_save">SALVAR</button>
+                <button hx-post="{% url 'save_ramal' open_status=False  ramal_id=id %}" hx-target="body" hx-swap="outerHTML" class="button_save" type="submit" autofocus>SALVAR</button>
             {% else %}
-                <button hx-post="{% url 'save_ramal' open_status=False  %}" hx-target="body" hx-swap="outerHTML" class="button_save">SALVAR</button>
+                <button hx-post="{% url 'save_ramal' open_status=False  %}" hx-target="body" hx-swap="outerHTML" class="button_save" type="submit" autofocus>SALVAR</button>
             {% endif %}
             
         </div>
