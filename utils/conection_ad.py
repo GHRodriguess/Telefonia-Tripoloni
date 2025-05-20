@@ -38,7 +38,7 @@ class Conexão_AD():
     def get_info_user(self, user_search=None):
         user_search = self.username if user_search == None else user_search        
         filtro = f'(sAMAccountName={user_search})'
-        atributos = ['displayName', 'mail', 'givenName', 'sn', 'memberOf', 'distinguishedName']
+        atributos = ['displayName', 'mail', 'givenName', 'sn', 'memberOf', 'distinguishedName', 'title']
         self.conecta_ad()
         self.conexao.search(search_base=self.base_dn, search_filter=filtro, search_scope=SUBTREE, attributes=atributos)
         if self.conexao.entries:
@@ -46,11 +46,15 @@ class Conexão_AD():
             self.desconecta_ad()       
             dn = dados_usuario.distinguishedName.value
             partes = dn.split(",")
-            setor = None            
-            for parte in partes:                
+            setor = None     
+
+            for i, parte in enumerate(partes):
                 if parte.strip().startswith("OU="):
                     setor = parte.replace("OU=", "")
-                    break
+                    if partes[i+1].strip().startswith("OU="):
+                        obra = f"{partes[i+1].replace('OU=', '')}"
+                        break 
+            print(dados_usuario.title.value)
             
             return {
                 'nome_completo': dados_usuario.displayName.value,
@@ -58,6 +62,7 @@ class Conexão_AD():
                 'nome': dados_usuario.givenName.value,
                 'sobrenome': dados_usuario.sn.value,
                 'grupos': dados_usuario.memberOf.values,
-                'setor': setor
+                'setor': setor,
+                'obra': obra,
             }     
         

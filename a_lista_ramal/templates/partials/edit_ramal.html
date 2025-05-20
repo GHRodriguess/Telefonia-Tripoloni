@@ -36,6 +36,9 @@
 
             <label for="id_setor">Setor:</label>
             <input type="text" name="setor" id="id_setor" {% if setor %}value="{{ setor }}"{% endif %} placeholder="Setor" maxlength="50">
+            <label for="id_obra">Obra:</label>
+            <input type="text" name="obra" id="id_obra" {% if obra %}value="{{ obra }}"{% endif %} placeholder="Obra" maxlength="50">
+        
         </div>
         <div class="bottom">   
             {% if id %}         

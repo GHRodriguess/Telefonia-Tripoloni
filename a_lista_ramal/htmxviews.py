@@ -30,13 +30,14 @@ def edit_ramal(request, open_status, ramal_id):
         context["sobrenome"] = ramal.sobrenome
         context["ramal"] = ramal.ramal
         context["anydesk"] = ramal.anydesk
-        context["setor"] = ramal.setor  
+        context["setor"] = ramal.setor
+        context["obra"] = ramal.obra  
         
     return render(request, "partials/edit_ramal.html", context=context) 
 
 @check_permission(permissions=['login_required', 'ti_member'])
 def save_ramal(request, open_status, ramal_id=None):
-    context = {}    
+    context = {}        
     context["open"] = "open" if open_status== "True" else ""  
     if request.method == "POST":
         nome_usuario = request.POST.get("nome_usuario", None)
@@ -47,6 +48,8 @@ def save_ramal(request, open_status, ramal_id=None):
         ramal = request.POST.get("ramal")
         anydesk = request.POST.get("anydesk")
         setor = request.POST.get("setor")
+        obra = request.POST.get("obra")
+        print(nome_usuario, type(nome_usuario), nome_usuario == "")
         if nome_usuario == "":
             ramal, criado = Ramal.objects.update_or_create(
             nome_completo=nome_completo,
@@ -57,7 +60,8 @@ def save_ramal(request, open_status, ramal_id=None):
                 'sobrenome': sobrenome,
                 'ramal': ramal,
                 'anydesk': anydesk,
-                'setor': setor
+                'setor': setor,
+                'obra': obra
             })   
         else:
             ramal, criado = Ramal.objects.update_or_create(
@@ -69,7 +73,8 @@ def save_ramal(request, open_status, ramal_id=None):
                 'sobrenome': sobrenome,
                 'ramal': ramal,
                 'anydesk': anydesk,
-                'setor': setor
+                'setor': setor,
+                'obra': obra
             })   
         
     return redirect("lista_ramal")
@@ -105,13 +110,17 @@ def get_data_ad(request):
             context["email"] = data.get("email", "")
             context["nome"] = data.get("nome", "")
             context["sobrenome"] = data.get("sobrenome", "")     
-            context["setor"] = data.get("setor", "")    
+            context["setor"] = data.get("setor", "")  
+            context["obra"] = data.get("obra", "") 
+            # buscar no banco ramal, pelo nome de usuário 
+            # retornar, também, o ramal e anydesk para não se perder caso já tenha 
         
     return render(request, "partials/edit_ramal.html", context=context)
 
 @check_permission(permissions=['login_required'])
 def gerar_pdf(request):  
     ramais = Ramal.objects.all()
+    ramais = ramais.order_by("obra")
     ramais = ramais.order_by("setor")
     html_string = render_to_string('partials/tabela_ramal_pdf.html', {'ramais': ramais, 'request': request})
     pdf_bytes = HTML(string=html_string, base_url=request.build_absolute_uri('/')).write_pdf()

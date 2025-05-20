@@ -10,6 +10,7 @@ class Ramal(models.Model):
     ramal = models.CharField(max_length=4, default='', blank=True)
     anydesk = models.CharField(max_length=10, blank=True) 
     setor = models.CharField(max_length=50, blank=True)
+    obra = models.CharField(max_length=50, blank=True)
     
     def __str__(self) -> str:
         return self.nome_completo
