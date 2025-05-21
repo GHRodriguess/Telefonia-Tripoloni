@@ -50,7 +50,7 @@
         </thead>
         <tbody>
             {% for r in ramais %}
-                {% if not r.ramal == '' %}
+                {% if r.ramal and r.ramal|cut:" " %}
                 <tr>
                     <td>{{ r.nome_completo }}</td>
                     <td>{{ r.ramal }}</td>
