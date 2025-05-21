@@ -54,8 +54,8 @@ class Conexão_AD():
                     if partes[i+1].strip().startswith("OU="):
                         obra = f"{partes[i+1].replace('OU=', '')}"
                         break 
-            print(dados_usuario.title.value)
             
+            #dados_usuario.title.value = cargo do usuário
             return {
                 'nome_completo': dados_usuario.displayName.value,
                 'email': dados_usuario.mail.value,
