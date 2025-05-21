@@ -112,8 +112,13 @@ def get_data_ad(request):
             context["sobrenome"] = data.get("sobrenome", "")     
             context["setor"] = data.get("setor", "")  
             context["obra"] = data.get("obra", "") 
-            # buscar no banco ramal, pelo nome de usuário 
-            # retornar, também, o ramal e anydesk para não se perder caso já tenha 
+            try:
+                r_usuario = Ramal.objects.filter(nome_usuario=nome_usuario).first()
+                if r_usuario:
+                    context["ramal"] = r_usuario.ramal
+                    context["anydesk"] = r_usuario.anydesk
+            except:
+                pass
         
     return render(request, "partials/edit_ramal.html", context=context)
 
