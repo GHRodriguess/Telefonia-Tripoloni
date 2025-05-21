@@ -50,12 +50,14 @@
         </thead>
         <tbody>
             {% for r in ramais %}
+                {% if not r.ramal == '' %}
                 <tr>
                     <td>{{ r.nome_completo }}</td>
                     <td>{{ r.ramal }}</td>
                     <td>{{ r.email }}</td>
                     <td>{{ r.setor }}</td>                    
                 </tr>
+                {% endif %}
             {% endfor %}
         </tbody>
     </table>
