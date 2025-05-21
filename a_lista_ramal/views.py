@@ -12,7 +12,5 @@ def lista_ramal(request):
     else:
         ramais = Ramal.objects.all()
     ramais = ramais.order_by('obra', 'setor')   
-    for r in ramais:
-        print(vars(r)) 
     context["ramais"] = ramais
     return render(request, "lista_ramal.html", context=context)

@@ -127,20 +127,22 @@ th, td {
     padding: 12px 15px;
     text-align: left;
     border-bottom: 1px solid #ddd;
-    
 }
 
 .td_anydesk {
     background-image: url("../src/anydesk.svg");
     background-position: center;
-    background-size: 10%;
+    background-size: contain;
     background-repeat: no-repeat;
     transition: 0.3s all;
+    transform: scale(0.8);
+    position: relative;
+    z-index: 1;
 }
 
 .td_anydesk:hover {
     background-image: url("../src/anydesk_hover.svg");
-    background-size: 13%;
+    transform: scale(1);
 }
 
 .edit {
