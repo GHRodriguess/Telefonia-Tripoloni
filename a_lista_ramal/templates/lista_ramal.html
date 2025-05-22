@@ -30,13 +30,13 @@
         {% endif %}
     </div> 
     <div class="filters">
-        <button hx-get="{% url 'filtra_central' %}" hx-vals='{"filtro": "central"}' hx-target="body" hx-swap="outerHTML">
+        <button class="botoes-filtro" hx-get="{% url 'filtra_central' %}" hx-vals='{"filtro": "central"}' hx-target="body" hx-swap="outerHTML">
             CENTRAL
         </button>
-        <button hx-get="{% url 'filtra_central' %}" hx-vals='{"filtro": ""}' hx-target="body" hx-swap="outerHTML">
+        <button class="botoes-filtro" hx-get="{% url 'filtra_central' %}" hx-vals='{"filtro": ""}' hx-target="body" hx-swap="outerHTML">
             GERAL
         </button>
-        <button hx-get="{% url 'filtra_central' %}" hx-vals='{"filtro": "Obra"}' hx-target="body" hx-swap="outerHTML">
+        <button class="botoes-filtro" hx-get="{% url 'filtra_central' %}" hx-vals='{"filtro": "Obra"}' hx-target="body" hx-swap="outerHTML">
             OBRAS
         </button>
 

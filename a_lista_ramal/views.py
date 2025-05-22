@@ -13,8 +13,7 @@ def lista_ramal(request, filtro=None):
     else:
         ramais = Ramal.objects.all()
     if filtro:        
-        ramais = filter_ramal_obra(filtro)
-        
+        ramais = filter_ramal_obra(filtro)        
     ramais = ramais.order_by('obra', 'setor')   
     context["ramais"] = ramais
     return render(request, "lista_ramal.html", context=context)

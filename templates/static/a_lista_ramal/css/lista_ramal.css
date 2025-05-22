@@ -95,6 +95,27 @@ main {
     outline: none;
 }
 
+.filters {
+    padding-top: 1%;
+    display: flex;
+    justify-content: start;
+}
+
+.botoes-filtro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 1%;
+    width: 100px;
+    height: 30px;
+    border-radius: 7px;
+    font-family: "Lora", serif;
+    font-weight: 600;
+    background-color: #4d51cc;
+    color: #fff;
+    border: none;
+}
+
 .tabela {
     overflow-x: auto;
     margin: 0 auto;
