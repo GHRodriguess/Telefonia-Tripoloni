@@ -29,6 +29,18 @@
             {% include 'partials/edit_ramal.html' with open=open %}     
         {% endif %}
     </div> 
+    <div class="filters">
+        <button hx-get="{% url 'filtra_central' %}" hx-vals='{"filtro": "central"}' hx-target="body" hx-swap="outerHTML">
+            CENTRAL
+        </button>
+        <button hx-get="{% url 'filtra_central' %}" hx-vals='{"filtro": ""}' hx-target="body" hx-swap="outerHTML">
+            GERAL
+        </button>
+        <button hx-get="{% url 'filtra_central' %}" hx-vals='{"filtro": "Obra"}' hx-target="body" hx-swap="outerHTML">
+            OBRAS
+        </button>
+
+    </div>
     {% include "partials/tabela_ramal.html" %}
 
 {% endblock %}

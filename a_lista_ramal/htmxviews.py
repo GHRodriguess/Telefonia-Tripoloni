@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template.loader import render_to_string
 from django.http import HttpResponse
+from django.urls import reverse
 from weasyprint import HTML
 import os
 import subprocess
@@ -94,6 +95,12 @@ def delete_ramal(request, open_status, ramal_id):
         ramal.delete()
         
     return redirect("lista_ramal")
+
+@check_permission(permissions=['login_required'])
+def filtra_central(request):
+    filtro = request.GET.get("filtro", None)
+    url = reverse("lista_ramal") + f"?filtro={filtro}"    
+    return redirect(url)
 
 @check_permission(permissions=['login_required', 'ti_member'])
 def get_data_ad(request):

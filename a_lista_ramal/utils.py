@@ -12,3 +12,8 @@ def filter_ramal(termo):
     Q(ramal__icontains=termo) |
     Q(anydesk__icontains=termo)
 )
+
+def filter_ramal_obra(termo):
+    return Ramal.objects.filter(
+    Q(obra__icontains=termo) 
+)
