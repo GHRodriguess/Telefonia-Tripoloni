@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'a_home',
     'a_usuarios',
     'a_lista_ramal',
+    'a_lista_telefonica',
     'a_errors',
 ]
 

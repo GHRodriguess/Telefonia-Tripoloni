@@ -25,5 +25,6 @@ urlpatterns = [
     path('', include("a_usuarios.urls")),
     path('', include("a_home.urls")), 
     path('ramal/', include("a_lista_ramal.urls")),
+    path('telefonia/', include("a_lista_telefonica.urls")),
     path('', include("a_errors.urls")), 
 ] 

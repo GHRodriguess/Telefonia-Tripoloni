@@ -53,7 +53,7 @@ class Conexão_AD():
                     setor = parte.replace("OU=", "")
                     if partes[i+1].strip().startswith("OU="):
                         obra = f"{partes[i+1].replace('OU=', '')}"
-                        break 
+                        break  
             
             #dados_usuario.title.value = cargo do usuário
             return {
