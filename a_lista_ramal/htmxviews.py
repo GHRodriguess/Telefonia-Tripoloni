@@ -49,8 +49,7 @@ def save_ramal(request, open_status, ramal_id=None):
         ramal = request.POST.get("ramal")
         anydesk = request.POST.get("anydesk")
         setor = request.POST.get("setor")
-        obra = request.POST.get("obra")
-        print(nome_usuario, type(nome_usuario), nome_usuario == "")
+        obra = request.POST.get("obra")        
         if nome_usuario == "":
             ramal, criado = Ramal.objects.update_or_create(
             nome_completo=nome_completo,

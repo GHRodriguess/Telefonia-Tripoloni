@@ -33,9 +33,6 @@
         <button class="botoes-filtro {% if request.session.filtro.central%}active{% endif %}" hx-get="{% url 'filtra_central' %}" hx-vals='{"filtro": "central"}' hx-target="body" hx-swap="outerHTML">
             CENTRAL
         </button>
-        <button class="botoes-filtro" hx-get="{% url 'filtra_central' %}" hx-vals='{"filtro": ""}' hx-target="body" hx-swap="outerHTML">
-            GERAL
-        </button>
         <button class="botoes-filtro {% if request.session.filtro.obra%}active{% endif %}" hx-get="{% url 'filtra_central' %}" hx-vals='{"filtro": "obra"}' hx-target="body" hx-swap="outerHTML">
             OBRAS
         </button>

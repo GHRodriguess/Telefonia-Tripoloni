@@ -4,8 +4,13 @@ from .models import *
 def filtro_busca(request):
     busca_get = request.GET.get("busca")
     if busca_get is not None:
-        request.session["busca"] = busca_get        
-    busca = request.session["busca"]
+        request.session["busca"] = busca_get    
+    try:    
+        busca = request.session["busca"]
+    except:
+        request.session["busca"] = "" 
+        busca = request.session["busca"]
+        
     if busca:
         ramais = filter_ramal(busca)
     else:
@@ -14,14 +19,16 @@ def filtro_busca(request):
 
 def filtro_obra(request, ramais):
     filtro = request.GET.get("filtro", None) 
-    if filtro:                
-        request.session["filtro"] = request.session.get("filtro", {"central": False, "obra": False})
+    request.session["filtro"] = request.session.get("filtro", {"central": False, "obra": False})
+    if filtro:   
+        print(request.session.get("filtro", None))
         request.session["filtro"][filtro] = False if request.session["filtro"][filtro] else True
     filtros = request.session["filtro"]
     for filtro, status in filtros.items():        
         if status:
             ramais = filter_ramal_obra(filtro, ramais)
     return ramais
+
 #filtros
 def filter_ramal(termo):
     return Ramal.objects.filter(
