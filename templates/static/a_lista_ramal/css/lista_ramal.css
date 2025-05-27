@@ -114,6 +114,12 @@ main {
     background-color: #4d51cc;
     color: #fff;
     border: none;
+    transition: all 0.3s;
+}
+
+.filters > .active {
+    background-color: #0c0e3d;
+    color: #fff;
 }
 
 .tabela {

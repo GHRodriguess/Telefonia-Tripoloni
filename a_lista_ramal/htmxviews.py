@@ -76,8 +76,7 @@ def save_ramal(request, open_status, ramal_id=None):
                 'anydesk': anydesk,
                 'setor': setor,
                 'obra': obra
-            })   
-        
+            })  
     return redirect("lista_ramal")
 
 @check_permission(permissions=['login_required', 'ti_member'])

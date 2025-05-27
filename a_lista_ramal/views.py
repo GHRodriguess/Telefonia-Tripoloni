@@ -4,16 +4,15 @@ from .models import *
 from .utils import *
 
 @check_permission(permissions=['login_required'])
-def lista_ramal(request, filtro=None):
+def lista_ramal(request, busca=None,filtro=None):
     context = {}
-    busca = request.GET.get("busca", None)
-    filtro = request.GET.get("filtro", None)
-    if busca:
-        ramais = filter_ramal(busca)
-    else:
-        ramais = Ramal.objects.all()
-    if filtro:        
-        ramais = filter_ramal_obra(filtro)        
+    #busca
+    busca, ramais = filtro_busca(request)
+    #obra
+    ramais = filtro_obra(request, ramais)
+
     ramais = ramais.order_by('obra', 'setor')   
     context["ramais"] = ramais
+    context["busca"] = busca 
     return render(request, "lista_ramal.html", context=context)
+

@@ -17,7 +17,7 @@
         <form class="search" {% if not request.user.is_staff %}style="width: 100%;"{% endif %}>
             {% csrf_token %}   
             <img src="{% static 'a_lista_ramal/src/search.svg' %}" alt="">     
-            <input type="text" name="busca" hx-get="{% url 'lista_ramal' %}" hx-trigger="keyup changed delay:500ms" value="{{request.GET.busca}}" hx-target="body" hx-swap="outerHTML" autocomplete="off"/>
+            <input type="text" name="busca" hx-get="{% url 'lista_ramal' %}" hx-trigger="keyup changed delay:500ms" value="{{request.session.busca}}" hx-target="body" hx-swap="outerHTML" autocomplete="off"/>
         </form>
         <div class="pdf">   
             <button data-url="{% url 'gerar_pdf' %}" onclick="BaixarPDF(this)"></button>         
@@ -30,13 +30,13 @@
         {% endif %}
     </div> 
     <div class="filters">
-        <button class="botoes-filtro" hx-get="{% url 'filtra_central' %}" hx-vals='{"filtro": "central"}' hx-target="body" hx-swap="outerHTML">
+        <button class="botoes-filtro {% if request.session.filtro.central%}active{% endif %}" hx-get="{% url 'filtra_central' %}" hx-vals='{"filtro": "central"}' hx-target="body" hx-swap="outerHTML">
             CENTRAL
         </button>
         <button class="botoes-filtro" hx-get="{% url 'filtra_central' %}" hx-vals='{"filtro": ""}' hx-target="body" hx-swap="outerHTML">
             GERAL
         </button>
-        <button class="botoes-filtro" hx-get="{% url 'filtra_central' %}" hx-vals='{"filtro": "Obra"}' hx-target="body" hx-swap="outerHTML">
+        <button class="botoes-filtro {% if request.session.filtro.obra%}active{% endif %}" hx-get="{% url 'filtra_central' %}" hx-vals='{"filtro": "obra"}' hx-target="body" hx-swap="outerHTML">
             OBRAS
         </button>
 
