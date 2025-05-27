@@ -99,27 +99,39 @@ main {
     padding-top: 1%;
     display: flex;
     justify-content: start;
+    gap: 1%;
 }
 
 .botoes-filtro {
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin-left: 1%;
-    width: 100px;
-    height: 30px;
+    align-items: center;    
+    width: 110px;
+    height: 40px;
     border-radius: 7px;
     font-family: "Lora", serif;
-    font-weight: 600;
-    background-color: #4d51cc;
-    color: #fff;
-    border: none;
+    font-weight: 700;
+    font-size: 1rem;
+    background-color: #ffffff;
+    color: #0c0e3d;
+    border: 1px solid #0c0e3d;
     transition: all 0.3s;
 }
 
-.filters > .active {
-    background-color: #0c0e3d;
+.filters > .botoes-filtro:hover {
+    background-color: rgb(24, 27, 121);
     color: #fff;
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.filters > .active {
+    background-color: #0d0f40;
+    color: #fff;
+}
+
+.filters > .active:hover {
+    background-color: #0d0f40;
 }
 
 .tabela {

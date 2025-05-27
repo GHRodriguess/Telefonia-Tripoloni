@@ -21,7 +21,6 @@ def filtro_obra(request, ramais):
     filtro = request.GET.get("filtro", None) 
     request.session["filtro"] = request.session.get("filtro", {"central": False, "obra": False})
     if filtro:   
-        print(request.session.get("filtro", None))
         request.session["filtro"][filtro] = False if request.session["filtro"][filtro] else True
     filtros = request.session["filtro"]
     for filtro, status in filtros.items():        
@@ -39,7 +38,8 @@ def filter_ramal(termo):
     Q(nome__icontains=termo) |
     Q(sobrenome__icontains=termo) |
     Q(ramal__icontains=termo) |
-    Q(anydesk__icontains=termo)
+    Q(anydesk__icontains=termo) |
+    Q(obra__icontains=termo) 
 )
 
 def filter_ramal_obra(termo, ramais):
