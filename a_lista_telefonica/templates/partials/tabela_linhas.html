@@ -1,0 +1,37 @@
+<div class="tabela">
+    <table>
+        <thead>
+            <tr>  
+                <th>Nome Completo</th>
+                <th>Número</th>
+                <th>Pacote de Dados</th>
+                <th>Setor</th>
+                <th>Obra</th>                
+                <th>Nome de Usuário</th>
+                <th>Imprimir</th>                
+                <th></th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for r in ramais %}                
+                <tr>
+                    <td>{{ r.nome_completo }}</td>
+                    <td>{{ r.ramal }}</td>
+                    <td>{{ r.email }}</td>
+                    <td>{{ r.setor }}</td>
+                    <td>{{ r.obra }}</td>
+                    {% if request.user.is_staff %}
+                        <td>{{ r.nome_usuario}}</td>
+                        {% if r.anydesk %}
+                        <td class="td_anydesk" hx-get="{% url 'conecta_anydesk' r.anydesk %}"></td>
+                        {% else %}
+                        <td >{{ r.anydesk }}</td>                            
+                        {% endif %}
+                        <td hx-get="{% url 'edit_ramal' open_status='True' ramal_id=r.id %}" hx-target="dialog" hx-swap="outerHTML" class="edit"></td>
+                    {% endif %}
+                </tr>                                
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

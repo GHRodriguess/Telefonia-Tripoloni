@@ -5,6 +5,7 @@ from .utils import *
 
 @check_permission(permissions=['login_required'])
 def lista_ramal(request, busca=None,filtro=None):
+    print(request.session.items())
     context = {}
     #busca
     busca, ramais = filtro_busca(request)
@@ -14,5 +15,7 @@ def lista_ramal(request, busca=None,filtro=None):
     ramais = ramais.order_by('obra', 'setor')   
     context["ramais"] = ramais
     context["busca"] = busca 
+    print()
+    print(request.session.items())
     return render(request, "lista_ramal.html", context=context)
 

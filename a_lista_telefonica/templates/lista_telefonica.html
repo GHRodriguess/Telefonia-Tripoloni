@@ -1,7 +1,9 @@
 {% extends 'partials/base.html'%}
 {% load static %}
 
-{% block extra_styles %}   
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'a_lista_telefonica/css/lista_telefonica.css'%}">
+<link rel="stylesheet" href="{% static 'a_lista_telefonica/css/add_linha.css'%}">   
 {% endblock %}
 
 {% block title %}Lista de Telefonica{% endblock %}
@@ -11,5 +13,18 @@
 {% endblock %}
 
 {% block content %}
-
+    <div class="func">
+        <form class="search" {% if not request.user.is_staff %}style="width: 100%;"{% endif %}>
+            {% csrf_token %}   
+            <img src="{% static 'a_lista_ramal/src/search.svg' %}" alt="">     
+            <input type="text" name="busca" hx-get="{% url 'lista_ramal' %}" hx-trigger="keyup changed delay:500ms" value="{{request.session.busca}}" hx-target="body" hx-swap="outerHTML" autocomplete="off"/>
+        </form>        
+        {% if request.user.is_staff%}
+            <div class="add">
+                <button hx-get="{% url 'add_ramal' open_status=True %}" hx-target="dialog" hx-swap="outerHTML" class="button_add"></button>
+            </div>       
+            {% include 'partials/edit_ramal.html' with open=open %}     
+        {% endif %}
+    </div> 
+    {% include "partials/tabela_linhas.html" %}
 {% endblock %}
