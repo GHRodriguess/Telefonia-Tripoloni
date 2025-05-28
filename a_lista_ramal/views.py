@@ -3,7 +3,6 @@ from utils.global_utils import  check_permission
 from .models import *
 from .utils import *
 
-@check_permission(permissions=['login_required'])
 def lista_ramal(request, busca=None,filtro=None):
 
     context = {}

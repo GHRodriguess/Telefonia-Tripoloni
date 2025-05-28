@@ -94,7 +94,6 @@ def delete_ramal(request, open_status, ramal_id):
         
     return redirect("lista_ramal")
 
-@check_permission(permissions=['login_required'])
 def filtra_central(request):
     filtro = request.GET.get("filtro", None)
     url = reverse("lista_ramal") + f"?filtro={filtro}"    
@@ -127,7 +126,6 @@ def get_data_ad(request):
         
     return render(request, "partials/edit_ramal.html", context=context)
 
-@check_permission(permissions=['login_required'])
 def gerar_pdf(request):  
     ramais = Ramal.objects.all()
     ramais = ramais.order_by("obra")
