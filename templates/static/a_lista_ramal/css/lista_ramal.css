@@ -168,6 +168,15 @@ th, td {
     border-bottom: 1px solid #ddd;
 }
 
+th {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+th:hover {
+    transform: scale(1.05);
+}
+
 .td_anydesk {
     background-image: url("../src/anydesk.svg");
     background-position: center;

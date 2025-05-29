@@ -1,0 +1,57 @@
+<dialog {{ open }}>
+    <div class="top">
+        <button hx-get="{% url 'add_ramal' open_status=False %}" hx-target="dialog" hx-swap="outerHTML" class="button_close"></button>
+    </div>
+    <form method="post">
+        <div class="main">        
+            {% csrf_token %}    
+            <label for="id_nome_usuario">Nome de Usuário:</label>
+            <input hx-post="{% url 'get_data_ad' %}" hx-trigger="keyup changed delay:500ms" hx-target="dialog" hx-swap="outerHTML" type="text" name="nome_usuario" id="id_nome_usuario" {% if nome_usuario%}value="{{ nome_usuario}}"{% endif %} maxlength="50" placeholder="Nome de Usuário" autocomplete="off" required>
+
+            <label for="id_nome_completo">Nome Completo:</label>
+            <input type="text" name="nome_completo" id="id_nome_completo" {% if nome_completo%}value="{{ nome_completo }}"{% endif %} placeholder="Nome Completo" maxlength="50">
+            
+            <label for="id_email">Email:</label>
+            <input type="email" name="email" id="id_email" {% if email %}value="{{ email }}"{% endif %} placeholder="Email" required>
+            <div class="info_junta">
+                <div class="campos">
+                    <label for="id_nome">Nome:</label>
+                    <input type="text" name="nome" id="id_nome" {% if nome %}value="{{ nome }}"{% endif %} placeholder="Nome" maxlength="50">
+                </div>
+                <div class="campos">                
+                    <label for="id_sobrenome">Sobrenome:</label>
+                    <input type="text" name="sobrenome" id="id_sobrenome" {% if sobrenome %}value="{{ sobrenome }}"{% endif %} placeholder="Sobrenome" maxlength="50">
+                </div>
+            </div>
+            <div class="info_junta">
+                <div class="campos">
+                    <label for="id_ramal">Ramal:</label>
+                    <input type="text" name="ramal" id="id_ramal" {% if ramal %}value="{{ ramal }}"{% endif %} placeholder="Ramal" maxlength="4">
+                </div>
+                <div class="campos">
+                    <label for="id_anydesk">AnyDesk:</label>
+                    <input type="text" name="anydesk" id="id_anydesk" {% if anydesk %}value="{{ anydesk }}"{% endif %} placeholder="AnyDesk" maxlength="10">
+                </div>                
+            </div>
+
+            <label for="id_setor">Setor:</label>
+            <input type="text" name="setor" id="id_setor" {% if setor %}value="{{ setor }}"{% endif %} placeholder="Setor" maxlength="50">
+            <label for="id_obra">Obra:</label>
+            <input type="text" name="obra" id="id_obra" {% if obra %}value="{{ obra }}"{% endif %} placeholder="Obra" maxlength="50">
+        
+        </div>
+        <div class="bottom">   
+            {% if id %}         
+            <button hx-post="{% url 'delete_ramal' open_status=False ramal_id=id %}" hx-target="body" hx-swap="outerHTML" class="button_delete" type="button"></button>
+            {% endif %} 
+            <button hx-get="{% url 'cancel_add_ramal' open_status=False %}" hx-target="dialog" hx-swap="outerHTML" class="button_cancel" type="button">CANCELAR</button>
+            {% if id %}
+                <button hx-post="{% url 'save_ramal' open_status=False  ramal_id=id %}" hx-target="body" hx-swap="outerHTML" class="button_save" type="submit" autofocus>SALVAR</button>
+            {% else %}
+                <button hx-post="{% url 'save_ramal' open_status=False  %}" hx-target="body" hx-swap="outerHTML" class="button_save" type="submit" autofocus>SALVAR</button>
+            {% endif %}
+            
+        </div>
+    </form>
+    
+</dialog>

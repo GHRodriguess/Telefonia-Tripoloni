@@ -2,14 +2,14 @@
     <table>
         <thead>
             <tr>  
-                <th>Nome Completo</th>
-                <th>Ramal</th>
-                <th>Email</th>
-                <th>Setor</th>
-                <th>Obra</th>
+                <th hx-get="{% url 'lista_ramal' %}?order_by=nome_completo"  hx-target="body" hx-swap="outerHTML" hx-trigger="click">Nome Completo</th>
+                <th hx-get="{% url 'lista_ramal' %}?order_by=ramal"  hx-target="body" hx-swap="outerHTML" hx-trigger="click">Ramal</th>
+                <th hx-get="{% url 'lista_ramal' %}?order_by=email"  hx-target="body" hx-swap="outerHTML" hx-trigger="click">Email</>
+                <th hx-get="{% url 'lista_ramal' %}?order_by=setor"  hx-target="body" hx-swap="outerHTML" hx-trigger="click">Setor</th>
+                <th hx-get="{% url 'lista_ramal' %}?order_by=obra"  hx-target="body" hx-swap="outerHTML" hx-trigger="click">Obra</th>
                 {% if request.user.is_staff %}
-                    <th>Nome de Usuário</th>
-                    <th>Anydesk</th>
+                    <th hx-get="{% url 'lista_ramal' %}?order_by=nome_usuario"  hx-target="body" hx-swap="outerHTML" hx-trigger="click">Nome de Usuário</th>
+                    <th hx-get="{% url 'lista_ramal' %}?order_by=anydesk"  hx-target="body" hx-swap="outerHTML" hx-trigger="click">Anydesk</th>
                     <th></th>
                 {% endif %}
             </tr>

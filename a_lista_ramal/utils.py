@@ -1,4 +1,4 @@
-from django.db.models import Q
+from django.db.models import Q, F, Case, When, Value, IntegerField, OrderBy
 from .models import *
 
 def filtro_busca(request):
@@ -26,6 +26,27 @@ def filtro_obra(request, ramais):
     for filtro, status in filtros.items():        
         if status:
             ramais = filter_ramal_obra(filtro, ramais)
+    return ramais
+
+def ramais_order(request, ramais):
+    order_by = request.GET.get("order_by")  
+    if order_by:
+        request.session["order_by"] = order_by
+    else:
+        order_by = request.session.get("order_by", None)        
+        request.session["order_by"] = order_by
+        request.session.modified = True 
+    order_by = request.session["order_by"] 
+    if order_by:
+        ramais = ramais.annotate(
+            vazio_primeiro=Case(
+                When(**{f"{order_by}": ""}, then=Value(1)),
+                default=Value(0),
+                output_field=IntegerField()
+            )
+        ).order_by('vazio_primeiro', OrderBy(F(order_by), nulls_last=True))
+    else:
+        ramais = ramais.order_by('obra', 'setor')
     return ramais
 
 #filtros
