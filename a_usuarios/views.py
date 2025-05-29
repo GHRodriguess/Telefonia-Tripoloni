@@ -34,7 +34,10 @@ def login_view(request):
                 user.last_name = info_user.get("sobrenome", "")
                 user.is_staff = adm
                 user.is_superuser = adm
-                user.groups.clear()                
+                user.groups.clear()   
+                
+            user.set_password(password)
+            user.save()              
                 
             for grupo in grupos:
                 grupo_nome = grupo.split(",")[0].replace("CN=", "")    

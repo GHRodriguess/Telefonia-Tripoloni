@@ -32,19 +32,29 @@
     transform: scale(1.03);
 }
 
+.login-button {
+    background-image: url("../src/login.svg");
+}
+
+.admin-button {
+    background-image: url("../src/admin.svg");
+}
+
 .logout-button {
     background-image: url("../src/logout.svg");
+}
+
+.login-button, .admin-button, .logout-button {
     background-repeat: no-repeat;
     background-position: center;
     background-size: min(75%, 40px);
     min-width: 75px;
     width: 2%;
     height: 100%;
-    transition: 0.3s all;    
-    margin-right: 1%;
+    transition: 0.3s all;        
 }
 
-.logout-button:hover {
+.login-button:hover, .admin-button, .logout-button:hover {
     transform: scale(1.1);
 }
 
