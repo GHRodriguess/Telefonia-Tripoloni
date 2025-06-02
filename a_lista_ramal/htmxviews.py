@@ -110,7 +110,7 @@ def get_data_ad(request):
         data = conexao_ad.get_info_user(nome_usuario)  
         if data:              
             context["nome_usuario"] = nome_usuario 
-            context["nome_completo"] = f"{data.get('nome', '')} {data.get('sobrenome', '')}" 
+            context["nome_completo"] = f"{data.get('nome') or ''} {data.get('sobrenome') or ''}"
             context["email"] = data.get("email", "")
             context["nome"] = data.get("nome", "")
             context["sobrenome"] = data.get("sobrenome", "")     
@@ -126,13 +126,11 @@ def get_data_ad(request):
         
     return render(request, "partials/edit_ramal.html", context=context)
 
-def gerar_pdf(request):  
-    ramais = Ramal.objects.all()
-    ramais = ramais.order_by("obra")
-    ramais = ramais.order_by("setor")
+def gerar_pdf(request):      
+    ramais = Ramal.objects.all()    
+    ramais = ramais.order_by("obra", "setor")
     html_string = render_to_string('partials/tabela_ramal_pdf.html', {'ramais': ramais, 'request': request})
     pdf_bytes = HTML(string=html_string, base_url=request.build_absolute_uri('/')).write_pdf()
-
     response = HttpResponse(pdf_bytes, content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="ramais.pdf"'
     return response

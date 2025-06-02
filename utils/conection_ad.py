@@ -2,6 +2,7 @@ from dotenv import load_dotenv
 import os
 from ldap3  import Server, NTLM, core, Connection, ALL, SUBTREE 
 
+
 load_dotenv()
 
 class Conexão_AD():
@@ -65,4 +66,27 @@ class Conexão_AD():
                 'setor': setor,
                 'obra': obra,
             }     
-        
+
+    def get_all_users(self, filter_user):
+        if filter_user == "active":
+            filtro = '(&(objectClass=user)(!(userAccountControl:1.2.840.113556.1.4.803:=2)))'
+        elif filter_user == "inactive":
+            filtro = '(&(objectClass=user)(userAccountControl:1.2.840.113556.1.4.803:=2))' 
+            
+        atributos = ['sAMAccountName']
+        self.conecta_ad()
+    
+        self.conexao.search(
+            search_base=self.base_dn,
+            search_filter=filtro,
+            search_scope=SUBTREE,
+            attributes=atributos
+        )
+        ignore_values = ["$"]
+        usuarios = []
+        for entry in self.conexao.entries:
+            if any(ignore_value in entry.sAMAccountName.value for  ignore_value in ignore_values): 
+                continue
+            usuarios.append(entry.sAMAccountName.value)
+            
+        return usuarios
