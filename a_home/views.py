@@ -4,5 +4,4 @@ from .utils import *
 
 def home(request):  
     limpar_sessao(request)
-    deletar_errados()
     return render(request, "home.html")
