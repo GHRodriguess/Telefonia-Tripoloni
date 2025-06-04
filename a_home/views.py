@@ -4,4 +4,5 @@ from .utils import *
 
 def home(request):  
     limpar_sessao(request)
+    #exportando_dados()
     return render(request, "home.html")
