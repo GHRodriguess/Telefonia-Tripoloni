@@ -43,7 +43,7 @@ def iniciar_verificacao_periodica():
     def tarefa():
         while True:
             verificar_inativos()
-            time.sleep(60) 
+            time.sleep(3600) 
 
     thread = threading.Thread(target=tarefa, daemon=True)
     thread.start()
