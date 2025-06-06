@@ -6,5 +6,6 @@ class AListaRamalConfig(AppConfig):
     name = 'a_lista_ramal'
 
     def ready(self):
-        from .tasks import iniciar_verificacao_periodica
-        iniciar_verificacao_periodica()
+        from .tasks import lista_ramal_tasks
+        lista_ramal_tasks()        
+        

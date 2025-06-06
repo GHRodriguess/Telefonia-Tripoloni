@@ -65,7 +65,9 @@ class Conexão_AD():
                 'grupos': dados_usuario.memberOf.values,
                 'setor': setor,
                 'obra': obra,
-            }     
+            } 
+        else:
+            return None    
 
     def get_all_users(self, filter_user):
         if filter_user == "active":
