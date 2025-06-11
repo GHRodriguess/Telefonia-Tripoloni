@@ -11,11 +11,11 @@ class Conexão_AD():
             self.username = username
             self.password = password
         else:
-            self.username = os.getenv("nome_usuario_ad")
-            self.password = os.getenv("senha_ad")
-        self.servidor_ad = os.getenv("servidor_ad")
-        self.dominio = os.getenv("dominio")    
-        self.base_dn = os.getenv("base_dn")
+            self.username = os.getenv("NOME_USUARIO_AD")
+            self.password = os.getenv("SENHA_AD")
+        self.servidor_ad = os.getenv("SERVIDOR_AD")
+        self.dominio = os.getenv("SERVIDOR_AD")    
+        self.base_dn = os.getenv("BASE_DN")
 
     def conecta_ad(self):        
         usuario_ad = f'{self.dominio}\\{self.username}'        

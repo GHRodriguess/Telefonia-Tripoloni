@@ -12,10 +12,11 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+load_dotenv()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
@@ -90,12 +91,22 @@ except:
     except:
         raise Exception("Banco de dados não encontrado. Verifique o caminho do banco de dados.")
     
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': name,
+        'ENGINE': 'mssql',
+        'NAME': os.getenv("NAME"),
+        'USER': os.getenv("USER"),
+        'PASSWORD': os.getenv("PASSWORD"),
+        'HOST': os.getenv("HOST"),
+        'PORT': '', 
+        'OPTIONS': {
+            'driver': 'ODBC Driver 17 for SQL Server',
+            'extra_params': 'TrustServerCertificate=yes',
+        },
     }
 }
+
 
 
 # Password validation

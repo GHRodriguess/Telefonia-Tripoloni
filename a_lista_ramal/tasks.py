@@ -79,7 +79,3 @@ def lista_ramal_tasks():
     thread2 = threading.Thread(target=atualizar_dados_usuarios_task, daemon=True)
     thread1.start()
     thread2.start()
-    
-
-    
-    
