@@ -12,14 +12,50 @@ def limpar_sessao(request):
         del request.session[k]
     request.session.midified = True
     
-
+# FUNÇÕES CRIADAS APENAS PARA TRANSFERIR O BANCO DE DADOS
 def exportando_dados():
-    conn = sqlite3.connect('db copy.sqlite3')
-    tabelas = ['a_lista_ramal_ramal', 'a_lista_telefonica_linha', "auth_group", "auth_group_permissions", "auth_user", "auth_permission", "auth_user_groups", "auth_user_user_permissions", "django_admin_log", "django_content_type", "django_migrations", "django_session", "sqlite_sequence"]
-    for tabela in tabelas:
-        
-        print(tabela) 
-        
+    conn = sqlite3.connect('db.sqlite3')
+    tabelas = ['a_lista_ramal_ramal']
+    for tabela in tabelas:        
+        print(tabela)         
         df = pd.read_sql_query(f"SELECT * FROM {tabela}", conn)
-
-        #df.to_csv(f'tabelas/{tabela}.csv', index=False)
+        df.to_excel(f'tabelas/{tabela}.xlsx', index=False)
+        
+def importando_dados():
+    df = pd.read_excel('tabelas/a_lista_ramal_ramal.xlsx')
+    for _, row in df.iterrows():
+        ramal_raw = row['ramal']
+        anydesk_raw = row['anydesk']
+        campos_nulos = ['email', 'nome_usuario', 'nome_completo', 'nome', 'sobrenome', 'setor', 'obra']
+        if pd.isna(ramal_raw):
+            ramal = ''
+        else:
+            ramal = str(int(float(ramal_raw))).strip()[:4]
+            
+        if pd.isna(anydesk_raw):
+            anydesk = ''
+        else:
+            anydesk = str(int(float(anydesk_raw))).strip()[:10]
+            
+        for campo_nulo in campos_nulos:
+            if pd.isna(row[campo_nulo]):
+                row[campo_nulo] = ''
+            
+        Ramal.objects.update_or_create(
+            id=row['id'],
+            defaults={
+                'nome_usuario': row.get('nome_usuario', '') or '',
+                'nome_completo': row.get('nome_completo', '') or '',
+                'email': row.get('email', '') or '',
+                'nome': row.get('nome', '') or '',
+                'sobrenome': row.get('sobrenome', '') or '',
+                'anydesk': anydesk,
+                'ramal': ramal,
+                'setor': row.get('setor', '') or '',
+                'obra': row.get('obra', '') or '',
+            }
+        )
+        
+def limpando_dados(): 
+    Ramal.objects.all().delete()
+    print("Todos os dados foram apagados com sucesso.")

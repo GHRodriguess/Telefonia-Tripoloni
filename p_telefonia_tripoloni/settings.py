@@ -92,13 +92,15 @@ except:
         raise Exception("Banco de dados não encontrado. Verifique o caminho do banco de dados.")
     
 
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'mssql',
-        'NAME': os.getenv("NAME"),
-        'USER': os.getenv("USER"),
-        'PASSWORD': os.getenv("PASSWORD"),
-        'HOST': os.getenv("HOST"),
+        'NAME': os.getenv("B_NAME"),
+        'USER': os.getenv("B_USER"),
+        'PASSWORD': os.getenv("B_PASSWORD"),
+        'HOST': os.getenv("B_HOST"),
         'PORT': '', 
         'OPTIONS': {
             'driver': 'ODBC Driver 17 for SQL Server',
@@ -106,8 +108,6 @@ DATABASES = {
         },
     }
 }
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators

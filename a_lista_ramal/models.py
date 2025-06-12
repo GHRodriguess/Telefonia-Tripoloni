@@ -7,7 +7,7 @@ class Ramal(models.Model):
     email = models.EmailField(blank=True)
     nome = models.CharField(max_length=50, blank=True)
     sobrenome = models.CharField(max_length=50, blank=True)
-    ramal = models.CharField(max_length=4, default='', blank=True)
+    ramal = models.CharField(max_length=5, default='', blank=True)
     anydesk = models.CharField(max_length=10, blank=True) 
     setor = models.CharField(max_length=50, blank=True)
     obra = models.CharField(max_length=50, blank=True)
