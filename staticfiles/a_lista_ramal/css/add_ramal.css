@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+dialog {
+    position: fixed;
+    top: 55%;
+    left: 50%;
+    width: 95%;
+    height: 80%;
+    transform: translate(-50%, -50%);
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 0, 0, 0.582);
+    z-index: 9999999;
+}
+
+.top {
+    display: flex;
+    justify-content: end;
+    height: 10%;
+}
+
+form {
+    height: 90%;
+}
+
+.main {
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+}
+
+.bottom {
+    display: flex;
+    justify-content: end;
+    height: 10%;
+    align-items: center;
+}
+
+.button_close {
+    width: 6vh;
+    height: 6vh;
+    background-image: url('../src/close.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 80%;
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.button_close:hover {
+    background-image: url("../src/close_hover.svg");
+    background-size: 100%;
+}
+
+.button_delete {
+    width: 6vh;
+    height: 6vh;
+    background-image: url('../src/delete.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 70%;
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.button_delete:hover {
+    background-image: url("../src/delete_hover.svg");
+    background-size: 85%;
+}
+
+.button_cancel,
+.button_save {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s;
+    margin: 0.5% 0;
+    margin-right: 0.5%;    
+    border: 1px solid rgba(0, 0, 0, 0.432);
+    height: 60%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.button_cancel {
+    background: #ccc;
+    color: #000;
+}
+
+.button_cancel:hover {
+    background: #bbb;
+    transform: scale(1.05);
+}
+
+.button_save {
+    background: #28a745;
+    color: #fff;
+}
+
+.button_save:hover {
+    background: #218838;
+    transform: scale(1.05);
+}
+
+
+.main input[type="text"],
+.main input[type="email"] {
+    padding: 8px 10px;
+    border: 1px solid #000000;
+    border-radius: 6px;
+    font-size: 1.2rem;
+    width: 100%;
+    height: 5vh;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+.main label, .campos label {
+    font-family: "Lora", serif;
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin: 0.8vh 0;
+}
+
+.main input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.info_junta {
+    display: flex;
+    justify-content: space-between;  
+    width: 100%;
+}
+
+.campos {
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+}
+
