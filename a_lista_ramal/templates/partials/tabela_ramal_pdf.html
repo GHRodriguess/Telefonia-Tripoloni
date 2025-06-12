@@ -1,4 +1,23 @@
+{% load static %}
+
 <style>
+    .cabecalho {
+        width: 100%;
+        height: auto;
+        display: flex;
+        align-items: center;
+    }
+    
+    .image {
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        width: 50px; 
+        height: 50px; 
+        margin: 0 auto 20px auto;
+        display: block; 
+    }
+
     .titulo {
         font-family: serif;
         font-size: 1.5rem;
@@ -46,34 +65,32 @@
         background-color: #fff;
     }
 
-    .image {
-        background-image: url("../../../templates/static/all/src/logo.png");
-        background-position: center;
-        background-size: contain;
-        background-repeat: no-repeat;
-    }
-
 </style>
 
-<div class="titulo">LISTA DE RAMAIS - TRIPOLONI CONSTRUTORA</div>
+
+<div class="cabecalho">
+    <img src="{% static 'all/src/logo_preto.png' %}" class="image">
+    <div class="titulo">LISTA DE RAMAIS - TRIPOLONI CONSTRUTORA</div>
+</div>
+
 <div class="tabela">
     <table>
         <thead>
             <tr>  
+                <th>Setor</th>  
                 <th>Nome Completo</th>
                 <th>Ramal</th>
-                <th>Email</th>
-                <th>Setor</th>  
+                <th>Email</th>                
             </tr>
         </thead>
         <tbody>
             {% for r in ramais %}
                 {% if r.ramal and r.ramal|cut:" " %}
                 <tr>
+                    <td>{{ r.setor }}</td>         
                     <td>{{ r.nome_completo }}</td>
                     <td>{{ r.ramal }}</td>
-                    <td>{{ r.email }}</td>
-                    <td>{{ r.setor }}</td>                    
+                    <td>{{ r.email }}</td>                               
                 </tr>
                 {% endif %}
             {% endfor %}
