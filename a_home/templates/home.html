@@ -13,6 +13,7 @@
 
 {% block content %} 
     {% include "partials/apps.html" with url="lista_ramal" img="a_home/src/ramal.svg" name_app="LISTA DE RAMAL" %}
+    {% include "partials/apps.html" with url="lista_ramal" img="a_home/src/ramal.svg" name_app="LISTA TELEFONES OBRA" %}
     {% if request.user.is_staff %}
         {% include "partials/apps.html" with url="lista_telefonica" img="a_home/src/phone.svg" name_app="GERENCIAMENTO DE CHIPS" %}
     {% endif %}

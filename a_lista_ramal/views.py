@@ -3,7 +3,7 @@ from utils.global_utils import  check_permission
 from .models import *
 from .utils import *
 
-def lista_ramal(request, busca=None, filtro=None, order_by=None):
+def lista_ramal(request,busca=None, filtro=None, order_by=None):
     context = {}
     #busca
     busca, ramais = filtro_busca(request)
