@@ -1,5 +1,5 @@
 {% load static %}
-<a href="{% url url %}" class="app">
+<a href="{% url url %}?filtro={{ filtro|urlencode }}" class="app">
     <div class="img">
         <img src="{% static img %}" alt="tste">
     </div>

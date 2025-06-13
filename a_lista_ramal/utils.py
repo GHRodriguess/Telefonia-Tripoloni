@@ -19,9 +19,12 @@ def filtro_busca(request):
 
 def filtro_obra(request, ramais):
     filtro = request.GET.get("filtro", None) 
+    
     request.session["filtro"] = request.session.get("filtro", {"central": False, "obra": False})
-    if filtro:   
+    if filtro: 
+        not_filtro = "obra" if filtro == "central" else "central"  
         request.session["filtro"][filtro] = False if request.session["filtro"][filtro] else True
+        request.session["filtro"][not_filtro] = False if request.session["filtro"][filtro] else True
     filtros = request.session["filtro"]
     for filtro, status in filtros.items():        
         if status:
