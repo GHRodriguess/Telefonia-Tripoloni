@@ -1,0 +1,43 @@
+
+.tabela {
+    overflow-x: auto;
+    margin: 0 auto;
+    margin-top: 20px;    
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    border: 1px solid #0c0e3d7e;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto;
+    border-radius: 8px;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+thead {
+    background: linear-gradient(to right, #0c0e3d, #1c1c77); 
+    color: #fff;
+    font-family: "Lora", serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+th:hover {
+    transform: scale(1.05);
+}
