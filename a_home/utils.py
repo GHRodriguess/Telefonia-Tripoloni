@@ -46,8 +46,8 @@ def apps(request):
 def exportando_dados():
     conn = sqlite3.connect('db.sqlite3')
     tabelas = ['a_lista_ramal_ramal']
-    for tabela in tabelas:        
-        print(tabela)         
+    for tabela in tabelas:       
+          
         df = pd.read_sql_query(f"SELECT * FROM {tabela}", conn)
         df.to_excel(f'tabelas/{tabela}.xlsx', index=False)
         
@@ -88,4 +88,3 @@ def importando_dados():
         
 def limpando_dados(): 
     Ramal.objects.all().delete()
-    print("Todos os dados foram apagados com sucesso.")
