@@ -265,5 +265,7 @@ pyrightconfig.json
 
 # End of https://www.toptal.com/developers/gitignore/api/django,python
 
+__pycache__/*
+
 *.ipynb
 db.sqlite3
