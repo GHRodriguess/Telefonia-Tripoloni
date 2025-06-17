@@ -12,6 +12,36 @@ def limpar_sessao(request):
         del request.session[k]
     request.session.midified = True
     
+def apps(request):
+    #parar criar mais apps na tela inicial adicione aqui
+    
+    #chaves opcionais ['filtro']
+    
+    apps = {
+        "LISTA RAMAL": { 
+            'name_app': 'LISTA DE RAMAL',
+            'url': 'filtra_central',
+            'filtro': 'central',
+            'img': 'a_home/src/ramal.svg',
+            "permissions": True
+        },
+        "LISTA TELEFONES OBRA": {
+            'name_app': 'LISTA DE TELEFONES OBRA',
+            'url': 'filtra_central',
+            'filtro': 'obra',
+            'img': 'a_home/src/ramal.svg',
+            "permissions": True
+        },
+        "GERENCIAMENTO DE CHIPS": {
+            "name_app": "GERENCIAMENTO DE CHIPS",
+            "url": "lista_telefonica",
+            "img": "a_home/src/phone.svg",   
+            "permissions": request.user.is_staff
+
+        }
+    }
+    return apps
+    
 # FUNÇÕES CRIADAS APENAS PARA TRANSFERIR O BANCO DE DADOS
 def exportando_dados():
     conn = sqlite3.connect('db.sqlite3')

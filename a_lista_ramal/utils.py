@@ -18,18 +18,19 @@ def filtro_busca(request):
     return busca, ramais
 
 def filtro_obra(request, ramais):
-    filtro = request.GET.get("filtro", None) 
-    
+    filtro = request.GET.get("filtro", None)
     request.session["filtro"] = request.session.get("filtro", {"central": False, "obra": False})
-    if filtro: 
-        not_filtro = "obra" if filtro == "central" else "central"  
-        request.session["filtro"][filtro] = False if request.session["filtro"][filtro] else True
-        request.session["filtro"][not_filtro] = False if request.session["filtro"][filtro] else True
+    if filtro:
+        non_filtro = "obra" if filtro == "central" else "central"
+        request.session["filtro"][filtro] = True
+        request.session["filtro"][non_filtro] = False
+
     filtros = request.session["filtro"]
     for filtro, status in filtros.items():        
         if status:
             ramais = filter_ramal_obra(filtro, ramais)
     return ramais
+
 
 def ramais_order(request, ramais):
     order_by = request.GET.get("order_by")  

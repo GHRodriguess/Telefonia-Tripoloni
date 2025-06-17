@@ -4,4 +4,6 @@ from .utils import *
 
 def home(request):  
     limpar_sessao(request)
-    return render(request, "home.html")
+    context = {}
+    context['apps'] = apps(request)
+    return render(request, "home.html", context=context)
