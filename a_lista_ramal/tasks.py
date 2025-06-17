@@ -68,12 +68,12 @@ def lista_ramal_tasks():
     def verificar_usuarios_inativos_task():
         while True:
             verificar_inativos()
-            time.sleep(3600) 
+            time.sleep(900) 
             
     def atualizar_dados_usuarios_task():
         while True:
             atualizar_dados_usuarios()
-            time.sleep(3600)
+            time.sleep(900)
 
     thread1 = threading.Thread(target=verificar_usuarios_inativos_task, daemon=True)
     thread2 = threading.Thread(target=atualizar_dados_usuarios_task, daemon=True)
