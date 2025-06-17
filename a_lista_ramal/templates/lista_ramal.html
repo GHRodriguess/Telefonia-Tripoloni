@@ -31,10 +31,10 @@
         {% endif %}
     </div> 
     <div class="filters">
-        <button class="botoes-filtro {% if request.session.filtro.central%}active{% endif %}" hx-get="{% url 'filtra_central' %}" hx-vals='{"filtro": "central"}' hx-target="body" hx-swap="outerHTML">
+        <button class="botoes-filtro {% if request.session.filtro.central%}active{% endif %}" hx-get="{% url 'filtra_central' %}" hx-vals='{"filtro": "central"}' hx-target="body" hx-swap="outerHTML" hx-push-url="true">
             CENTRAL
         </button>
-        <button class="botoes-filtro {% if request.session.filtro.obra%}active{% endif %}" hx-get="{% url 'filtra_central' %}" hx-vals='{"filtro": "obra"}' hx-target="body" hx-swap="outerHTML">
+        <button class="botoes-filtro {% if request.session.filtro.obra%}active{% endif %}" hx-get="{% url 'filtra_central' %}" hx-vals='{"filtro": "obra"}' hx-target="body" hx-swap="outerHTML" hx-push-url="true">
             OBRAS
         </button>
 

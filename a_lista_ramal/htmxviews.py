@@ -94,7 +94,9 @@ def delete_ramal(request, open_status, ramal_id):
 
 def filtra_central(request):
     filtro = request.GET.get("filtro", None)
+    print(filtro)
     url = reverse("lista_ramal") + f"?filtro={filtro}"    
+    print(url)
     return redirect(url)
 
 @check_permission(permissions=['login_required', 'ti_member'])
