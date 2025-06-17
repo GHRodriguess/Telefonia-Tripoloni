@@ -1,6 +1,7 @@
 import threading
 import time
 import pandas as pd
+from datetime import datetime
 from .models import *
 from utils.conection_ad import *
 
@@ -38,6 +39,7 @@ def verificar_inativos():
         except Ramal.DoesNotExist:
             continue
     print("finalizado a verificao de inativos.")
+    print(datetime.now().time().strftime("%H:%M:%S"))
 
 def atualizar_dados_usuarios():
     conexao_ad = Conexão_AD()
@@ -58,9 +60,9 @@ def atualizar_dados_usuarios():
     Ramal.objects.bulk_update(
         atualizados,
         ["nome_completo", "email", "nome", "sobrenome", "setor", "obra"]
-    )
-
+    )    
     print("finalizado a atualização de dados usuários.")
+    print(datetime.now().time().strftime("%H:%M:%S"))
 
         
 def lista_ramal_tasks():
