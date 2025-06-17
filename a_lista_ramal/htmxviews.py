@@ -28,6 +28,7 @@ def edit_ramal(request, open_status, ramal_id):
         context["nome"] = ramal.nome
         context["sobrenome"] = ramal.sobrenome
         context["ramal"] = ramal.ramal
+        context["numero_celular"] = ramal.numero_celular
         context["anydesk"] = ramal.anydesk
         context["setor"] = ramal.setor
         context["obra"] = ramal.obra  
@@ -45,6 +46,8 @@ def save_ramal(request, open_status, ramal_id=None):
         nome = request.POST.get("nome")
         sobrenome = request.POST.get("sobrenome")
         ramal = request.POST.get("ramal")
+        numero_celular = request.POST.get("numero_celular")
+        
         anydesk = request.POST.get("anydesk")
         setor = request.POST.get("setor")
         obra = request.POST.get("obra")        
@@ -52,27 +55,29 @@ def save_ramal(request, open_status, ramal_id=None):
             ramal, criado = Ramal.objects.update_or_create(
             nome_completo=nome_completo,
             defaults={
-                'nome_usuario': nome_usuario,
-                'email': email,
-                'nome': nome,
-                'sobrenome': sobrenome,
-                'ramal': ramal,
-                'anydesk': anydesk,
-                'setor': setor,
-                'obra': obra
+                'nome_usuario': nome_usuario or '',
+                'email': email or '',
+                'nome': nome or '',
+                'sobrenome': sobrenome or '',
+                'ramal': ramal or '',
+                'numero_celular': numero_celular or '',
+                'anydesk': anydesk or '',
+                'setor': setor or '',
+                'obra': obra or ''
             })   
         else:
             ramal, criado = Ramal.objects.update_or_create(
             nome_usuario=nome_usuario,
             defaults={
-                'nome_completo': nome_completo,
-                'email': email,
-                'nome': nome,
-                'sobrenome': sobrenome,
-                'ramal': ramal,
-                'anydesk': anydesk,
-                'setor': setor,
-                'obra': obra
+                'nome_completo': nome_completo or '',
+                'email': email or '',
+                'nome': nome or '',
+                'sobrenome': sobrenome or '',
+                'ramal': ramal or '',
+                'numero_celular': numero_celular or '',
+                'anydesk': anydesk or '',
+                'setor': setor or '',
+                'obra': obra or ''
             })  
     return redirect("lista_ramal")
 

@@ -3,7 +3,7 @@
         <button hx-get="{% url 'add_ramal' open_status=False %}" hx-target="dialog" hx-swap="outerHTML" class="button_close"></button>
     </div>
     <form method="post">
-        <div class="main">        
+        <div class="main">                  
             {% csrf_token %}    
             <label for="id_nome_usuario">Nome de Usuário:</label>
             <input hx-post="{% url 'get_data_ad' %}" hx-trigger="keyup changed delay:500ms" hx-target="dialog" hx-swap="outerHTML" type="text" name="nome_usuario" id="id_nome_usuario" {% if nome_usuario%}value="{{ nome_usuario}}"{% endif %} maxlength="50" placeholder="Nome de Usuário" autocomplete="off" required>
@@ -25,8 +25,15 @@
             </div>
             <div class="info_junta">
                 <div class="campos">
-                    <label for="id_ramal">Ramal:</label>
-                    <input type="text" name="ramal" id="id_ramal" {% if ramal %}value="{{ ramal }}"{% endif %} placeholder="Ramal" maxlength="4">
+                    
+                    {% if request.session.filtro.central == True %}
+                        <label for="id_ramal">Ramal:</label>
+                        <input type="text" name="ramal" id="id_ramal" {% if ramal %}value="{{ ramal }}"{% endif %} placeholder="Ramal" maxlength="4">
+                    {% else %}
+                        <label for="id_numero_celular">Número Celular:</label>
+                        <input type="text" name="numero_celular" id="id_numero_celular" {% if numero_celular %}value="{{ numero_celular }}"{% endif %} placeholder="Número Celular" maxlength="15">
+                    {% endif %}    
+                    
                 </div>
                 <div class="campos">
                     <label for="id_anydesk">AnyDesk:</label>
