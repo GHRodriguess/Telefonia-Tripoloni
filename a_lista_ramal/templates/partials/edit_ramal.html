@@ -31,7 +31,7 @@
                         <input type="text" name="ramal" id="id_ramal" {% if ramal %}value="{{ ramal }}"{% endif %} placeholder="Ramal" maxlength="4">
                     {% else %}
                         <label for="id_numero_celular">Número Celular:</label>
-                        <input type="text" name="numero_celular" id="id_numero_celular" {% if numero_celular %}value="{{ numero_celular }}"{% endif %} placeholder="Número Celular" maxlength="15">
+                        <input type="text" name="numero_celular" id="id_numero_celular" {% if numero_celular %}value="{{ numero_celular }}"{% endif %} placeholder="Coloque no Formato (dd)nnnnn-nnnn sem hífen e parênteses" maxlength="15">
                     {% endif %}    
                     
                 </div>

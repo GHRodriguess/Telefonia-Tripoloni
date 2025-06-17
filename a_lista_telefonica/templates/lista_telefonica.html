@@ -2,6 +2,8 @@
 {% load static %}
 
 {% block extra_styles %}
+<link rel="stylesheet" href="{% static 'a_lista_telefonica/css/lista_telefonica.css'%}">
+<link rel="stylesheet" href="{% static 'all/css/func.css'%}">
 <link rel="stylesheet" href="{% static 'all/css/tabela.css'%}">
 <link rel="stylesheet" href="{% static 'a_lista_telefonica/css/add_linha.css'%}">   
 {% endblock %}
@@ -10,6 +12,7 @@
 
 {% block navbar %}
     {% include 'partials/navbar.html' %}
+    
 {% endblock %}
 
 {% block content %}

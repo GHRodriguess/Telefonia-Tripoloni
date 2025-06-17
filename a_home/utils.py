@@ -32,13 +32,13 @@ def apps(request):
             'img': 'a_home/src/ramal.svg',
             "permissions": True
         },
-        "GERENCIAMENTO DE CHIPS": {
-            "name_app": "GERENCIAMENTO DE CHIPS",
-            "url": "lista_telefonica",
-            "img": "a_home/src/phone.svg",   
-            "permissions": request.user.is_staff
+    #    "GERENCIAMENTO DE CHIPS": {
+    #        "name_app": "GERENCIAMENTO DE CHIPS",
+    #        "url": "lista_telefonica",
+    #        "img": "a_home/src/phone.svg",   
+    #        "permissions": request.user.is_staff
 
-        }
+    #   }
     }
     return apps
     

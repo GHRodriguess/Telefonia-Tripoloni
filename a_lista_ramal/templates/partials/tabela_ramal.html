@@ -8,8 +8,6 @@
                 {% else %}
                 <th hx-get="{% url 'lista_ramal' %}?order_by=numero_celular"  hx-target="body" hx-swap="outerHTML" hx-trigger="click">Telefone</th>
                 {% endif %}
-
-                
                 <th hx-get="{% url 'lista_ramal' %}?order_by=email"  hx-target="body" hx-swap="outerHTML" hx-trigger="click">Email</>
                 <th hx-get="{% url 'lista_ramal' %}?order_by=setor"  hx-target="body" hx-swap="outerHTML" hx-trigger="click">Setor</th>
                 <th hx-get="{% url 'lista_ramal' %}?order_by=obra"  hx-target="body" hx-swap="outerHTML" hx-trigger="click">Obra</th>
