@@ -6,7 +6,7 @@
         <div class="main">        
             {% csrf_token %}    
             <label for="id_nome_usuario">Nome de Usuário:</label>
-            <input hx-post="{% url 'get_data_ad' %}" hx-trigger="keyup changed delay:500ms" hx-target="dialog" hx-swap="outerHTML" type="text" name="nome_usuario" id="id_nome_usuario" {% if nome_usuario%}value="{{ nome_usuario}}"{% endif %} maxlength="50" placeholder="Nome de Usuário" autocomplete="off" required>
+            <input hx-post="{% url 'get_data_ad' %}" hx-trigger="focusout changed" hx-target="dialog" hx-swap="outerHTML" type="text" name="nome_usuario" id="id_nome_usuario" {% if nome_usuario%}value="{{ nome_usuario}}"{% endif %} maxlength="50" placeholder="Nome de Usuário" autocomplete="off" required>
 
             <label for="id_nome_completo">Nome Completo:</label>
             <input type="text" name="nome_completo" id="id_nome_completo" {% if nome_completo%}value="{{ nome_completo }}"{% endif %} placeholder="Nome Completo" maxlength="50">
